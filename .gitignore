@@ -2,3 +2,14 @@
 .Rhistory
 .RData
 .Ruserdata
+
+# Salidas generadas automáticamente
+*.html
+*.pdf
+*.tex
+*.log
+*.aux
+*.out
+
+# Directorios de caché
+.cache/
