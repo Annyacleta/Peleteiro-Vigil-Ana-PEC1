@@ -36,11 +36,29 @@ if (!require(GEOquery)) {
 
 150 palabras
 
+Los datos seleccionados para esta PEC provienen del análisis por LC-MS de muestras fecales de ratones con cáncer colorectal que recibieron la microbiota de ratones sometidos a una dieta cetogénica o a una dieta estándar. Comparé el metaboloma fecal de los dos grupos de ratones con trasplante de microbiota para detectar diferencias en su composición, como señalan los autores del estudio. Encontré que....
+
+HABLAR DEL PROCESO Y PRINCIPALES RESULTADOS
+
+
 
 # Objetivos
 
 
 Media página
+
+Objetivo global: Comparar los metabolitos en heces de los ratones trasplantados con "microbiota estándar" (MSD) y aquellos con "microbiota cetogénica" (MCG) para detectar diferencias en su composición.
+
+objetivos específicos:
+
+1. Crear un objeto de clase SummarizedExperiment que contenga los datos y los metadatos (información acerca del dataset, sus filas y columnas).
+
+2. Estudiar la calidad de los datos (preprocesado) -> raw data, deberían estar ok igualmente? normalizar, escalar para PCA.
+
+2. Análisis de datos exploratorio -> dimensiones, números de grupos, número de muestras, nombre de los grupos, númoer de metabolitos, número de medidas (foramto tabla). Histogramas? barplot con la cantidad de cada metabolito en los ratones, diferenciando por colores según grupo. Visualización/agrupación multivariante: Mostrar PC1 y PC2 para agrupar muestras, dendrograma para ver si se da un agrupamiento jerárquico de las muestras.
+
+
+3. Búsqueda de un perfil de metabolitos fecales diferencial entre ratones MSD y ratones MCG -> el objetivo final del estudio es ver si esto condiciona el desarrollo tumoral en el intensitno grueso distal- 
 
 
 
@@ -50,8 +68,26 @@ Media página
 
 ## Origen y naturaleza de los datos
 
+El dataset empleado para este ejercicio ha sido extraído del repositorio del Metabolomics Workbench (https://www.metabolomicsworkbench.org/).
+
+- ID del proyecto:PR002283 ("Ketogenic diet suppresses colorectal cancer through the gut microbiome long chain fatty acid stearate")
+
+- Fecha de publicación: 20-01-2025
+
+- ID del estudio: ST003680 ("Untargeted LCMS data from Cecal Microbiota Transplant (CMT) experiment")
+
+Siguiendo las recomendaciones del repositorio Metabolomics Workbench, opté por descargar el archivo comprimido (12 GB) con el dataset en formato .mzML a través de un servidor FTP anónimo con FileZilla, un cliente FTP gratuito y ampliamente utilizado.
+
+El dataset procede de un experimento con ratones libres de gérmenes, que recibieron contenido cecal (del ciego, en el intestino grueso) de ratones alimentados con una dieta cetogénica (KC) o de ratones alimentados con una dieta estándar (SC). Después, estos ratones fueron sometidos al tratamiento con AOM/DSS, inductor de carcinogénesis y colitis, según lo descrito en Tsenkova et al. (2025). Las muestras fecales de los ratones se analizaron mediante una estrategia de LC-MS para caracterizar el metaboloma fecal de los diferentes grupos experimentales. Los metabolitos se extrajeron de las muestras fecales de ratón y las muestras resultantes se utilizaron para un análisis de metabolómica no dirigida por LC-MS, utilizando un sistema Vanquish UHPLC (ThermoFisher Scientific) acoplado a un espectrómetro de masas Q Exactive HF (ThermoFisher Scientific).
+
 
 ## Herramientas estadísticas y bioinformáticas
+
+
+La clase `ExpressionSet`, del paquete `Biobase` fue diseñada para procesar datos de microarrays, mientras que `SummarizedExperiment` fue concebida desde el inicio para el manejo de datos ómicos modernos, como RNA-seq, ChIP-seq o metabolómica. Esta última permite almacenar múltiples matrices de datos (`assays`), en contraste con `ExpressionSet`, que contiene una única matriz principal (`exprs`). Por su mayor flexibilidad, eficiencia y compatibilidad con flujos de trabajo actuales en Bioconductor, `SummarizedExperiment` es la clase recomendada para manejar datos ómicos complejos.
+
+
+Herramientas compatibles para `SummarizedExperiment`: DESeq2, edgeR, limma-voom (actual)
 
 
 ## Procedimiento del análisis
@@ -86,6 +122,7 @@ Media página
 Repositorio de GitHub: https://github.com/Annyacleta/Peleteiro-Vigil-Ana-PEC1
 
 
+Tsenkova, M., Brauer, M., Pozdeev, V.I. et al. Ketogenic diet suppresses colorectal cancer through the gut microbiome long chain fatty acid stearate. Nat Commun 16, 1792 (2025). https://doi.org/10.1038/s41467-025-56678-0
 
 
 
