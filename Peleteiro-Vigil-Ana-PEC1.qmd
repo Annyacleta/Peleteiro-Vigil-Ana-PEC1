@@ -36,9 +36,10 @@ if (!require(GEOquery)) {
 
 150 palabras
 
-Los datos seleccionados para esta PEC provienen del análisis por LC-MS de muestras fecales de ratones con cáncer colorectal que recibieron la microbiota de ratones sometidos a una dieta cetogénica o a una dieta estándar. Comparé el metaboloma fecal de los dos grupos de ratones con trasplante de microbiota para detectar diferencias en su composición, como señalan los autores del estudio. Encontré que....
+Los datos seleccionados para esta PEC provienen del análisis por LC-MS de muestras fecales de ratones con cáncer colorectal que recibieron un trasplante de microbiota de ratones sometidos a una dieta cetogénica o a una dieta estándar. tras un análisis exploratorio con XXXXXXX, comparé el metaboloma fecal de los dos grupos de ratones trasplantados para detectar diferencias en su composición, como señalan los autores del estudio. Encontré que....
 
-HABLAR DEL PROCESO Y PRINCIPALES RESULTADOS
+HABLAR DEL PROCESO Y PRINCIPALES RESULTADOS... algo de free fatty acids??
+OJO mi dataset quizás fue solo para caracterizar metabolómicamente los ratones GF trasplantados
 
 
 
@@ -58,7 +59,7 @@ objetivos específicos:
 2. Análisis de datos exploratorio -> dimensiones, números de grupos, número de muestras, nombre de los grupos, númoer de metabolitos, número de medidas (foramto tabla). Histogramas? barplot con la cantidad de cada metabolito en los ratones, diferenciando por colores según grupo. Visualización/agrupación multivariante: Mostrar PC1 y PC2 para agrupar muestras, dendrograma para ver si se da un agrupamiento jerárquico de las muestras.
 
 
-3. Búsqueda de un perfil de metabolitos fecales diferencial entre ratones MSD y ratones MCG -> el objetivo final del estudio es ver si esto condiciona el desarrollo tumoral en el intensitno grueso distal- 
+3. Búsqueda de un perfil de metabolitos fecales diferencial entre ratones MSD y ratones MCG -> el objetivo final del estudio es ver si esto condiciona el desarrollo tumoral en el intensitno grueso distal. FOCO EN FREE FATTY ACIDS! -> Prueba t, volcano plot
 
 
 
@@ -78,11 +79,33 @@ El dataset empleado para este ejercicio ha sido extraído del repositorio del Me
 
 Siguiendo las recomendaciones del repositorio Metabolomics Workbench, opté por descargar el archivo comprimido (12 GB) con el dataset en formato .mzML a través de un servidor FTP anónimo con FileZilla, un cliente FTP gratuito y ampliamente utilizado.
 
-El dataset procede de un experimento con ratones libres de gérmenes, que recibieron contenido cecal (del ciego, en el intestino grueso) de ratones alimentados con una dieta cetogénica (KC) o de ratones alimentados con una dieta estándar (SC). Después, estos ratones fueron sometidos al tratamiento con AOM/DSS, inductor de carcinogénesis y colitis, según lo descrito en Tsenkova et al. (2025). Las muestras fecales de los ratones se analizaron mediante una estrategia de LC-MS para caracterizar el metaboloma fecal de los diferentes grupos experimentales. Los metabolitos se extrajeron de las muestras fecales de ratón y las muestras resultantes se utilizaron para un análisis de metabolómica no dirigida por LC-MS, utilizando un sistema Vanquish UHPLC (ThermoFisher Scientific) acoplado a un espectrómetro de masas Q Exactive HF (ThermoFisher Scientific).
+El dataset procede de un experimento con ratones libres de gérmenes, que recibieron contenido cecal (del ciego, en el intestino grueso) de ratones alimentados con una dieta cetogénica (KC) o de ratones alimentados con una dieta estándar (SC). Después, estos ratones fueron sometidos al tratamiento con AOM/DSS, inductor de carcinogénesis y colitis, según lo descrito en Tsenkova et al. (2025). -> Fig 2.a paper
+
+Las muestras fecales de los ratones se analizaron mediante una estrategia de LC-MS para caracterizar el metaboloma fecal de los diferentes grupos experimentales. Los metabolitos se extrajeron de las muestras fecales de ratón y las muestras resultantes se utilizaron para un análisis de metabolómica no dirigida por LC-MS, utilizando un sistema Vanquish UHPLC (ThermoFisher Scientific) acoplado a un espectrómetro de masas Q Exactive HF (ThermoFisher Scientific).
+
+
+PAPER
+Cómo se hizo la cuantificación de metabolitos de muestras fecales murinas:
+
+Preprocesasdo de los datos: 
+Metabolomic profiling data pre-processing of untargeted LC-MS
+datasets
+Raw data files obtained through LC-MS of human stool and murine
+plasma and stool samples were processed in TraceFinder (version
+5.1.203.0) for peak identification and annotation. Three different inhouse
+libraries, generated with reference standards, as well as one
+commercially available library, mzCloud Offline for mzVault
+2.3_Omics_2020A.db, in the Advanced Mass Spectral Database (AMSD)
+(HighChem, from ThermoFischer Scientific), were used for peak
+annotation, with the adduct formulas [M + H]+ and [M-H]-. Annotated
+features and integration tables were exported for post-processing.
+
 
 
 ## Herramientas estadísticas y bioinformáticas
 
+
+VER https://bioconductor.org/packages/release/bioc/vignettes/SummarizedExperiment/inst/doc/SummarizedExperiment.html
 
 La clase `ExpressionSet`, del paquete `Biobase` fue diseñada para procesar datos de microarrays, mientras que `SummarizedExperiment` fue concebida desde el inicio para el manejo de datos ómicos modernos, como RNA-seq, ChIP-seq o metabolómica. Esta última permite almacenar múltiples matrices de datos (`assays`), en contraste con `ExpressionSet`, que contiene una única matriz principal (`exprs`). Por su mayor flexibilidad, eficiencia y compatibilidad con flujos de trabajo actuales en Bioconductor, `SummarizedExperiment` es la clase recomendada para manejar datos ómicos complejos.
 
@@ -92,6 +115,7 @@ Herramientas compatibles para `SummarizedExperiment`: DESeq2, edgeR, limma-voom 
 
 ## Procedimiento del análisis
 
+Quiero ver cuáles de los metabolitos son FFA (ojo estearato)!!! Poner aquí listado: 2-hydroxyhexadecanoic acid, 2-Hydroxybutyric acid (no es), ... igual no compensa, no sale el estearato = octadecanoic acid en este dataset, se hacen medidas en heces de ratones SPF y tb se buscan las bacterias que lo producen en nuestro dataset, pero esos son otros experimentos!
 
 
 # Resultados
@@ -105,7 +129,8 @@ código, análisis, resultados con tablas y figuras, y explicaciones
 # Discusión
 
 
-Reflexiones sobre limitaciones del estudio y sobre el trabajo realizado, en el contexto del problema biológico
+Reflexiones sobre limitaciones del estudio y sobre el trabajo realizado, en el contexto del problema biológico.
+(Breve info del paper, tener en cuenta las bacterias que hay presentes en cada tipo de microbiota. Relación con efecto antitumoral-> esta parte no la he analizado, así que es una limitación de mi trabajo! se trata de un análisis parcial). Quizás con alguna figura del paper se puedan hacer comparaciones, pero no parece -> OJO mi dataset quizás fue solo para caracterizar metabolómicamente los ratones GF trasplantados
 
 1 página
 
