@@ -1,0 +1,91 @@
+
+---
+title: "Análisis de Datos Ómicos - PEC 1"
+author: "Ana Peleteiro Vigil"
+lang: es
+format:
+  pdf:
+    include-in-header: header.tex
+    pdf-engine: xelatex
+    keep-tex: true
+    toc: true
+    number-sections: true
+    toc-depth: 2
+knit:
+  quarto:
+    chunk_options:
+      echo: false
+      cache: false
+      prompt: false
+      tidy: true
+      comment: NA
+      message: false
+      warning: false
+    knit_options:
+      width: 75
+---
+
+```{r, warning=FALSE, message=FALSE}
+
+if (!require(GEOquery)) {
+  BiocManager::install("GEOquery")
+}
+```
+
+# Abstract
+
+150 palabras
+
+
+# Objetivos
+
+
+Media página
+
+
+
+# Métodos
+
+1-2 páginas
+
+## Origen y naturaleza de los datos
+
+
+## Herramientas estadísticas y bioinformáticas
+
+
+## Procedmiento del análisis
+
+
+
+# Resultados
+
+
+código, análisis, resultados con tablas y figuras, y explicaciones
+
+4-5 páginas
+
+
+# Discusión
+
+
+Reflexiones sobre limitaciones del estudio y sobre el trabajo realizado, en el contexto del problema biológico
+
+1 página
+
+
+# Conclusiones
+
+Media página 
+
+
+
+# Referencias
+
+
+Enlace al repositorio de GitHub: 
+
+
+
+
+
