@@ -25,7 +25,9 @@ knit:
       width: 75
 ---
 
-```{r,echo=FALSE, warning=FALSE, message=FALSE}
+```{r message=FALSE, warning=FALSE}
+#| eval: false
+#| include: false
 if (!requireNamespace("BiocManager", quietly = TRUE)) {
   install.packages("BiocManager")
 }
@@ -71,7 +73,7 @@ Objetivo global: Comparar los metabolitos en heces de los ratones trasplantados 
 
 objetivos específicos:
 
-1. Crear un objeto de clase SummarizedExperiment que contenga los datos y los metadatos (información acerca del dataset, sus filas y columnas).
+1. Crear un objeto de clase `SummarizedExperiment` que contenga los datos y los metadatos (información acerca del dataset, sus filas y columnas).
 
 2. Estudiar la calidad de los datos (preprocesado) -> raw data, deberían estar ok igualmente? normalizar, escalar para PCA.
 
@@ -148,63 +150,6 @@ Herramientas compatibles para `SummarizedExperiment`: DESeq2, edgeR, limma-voom 
 Quiero ver cuáles de los metabolitos son FFA (ojo estearato)!!! Poner aquí listado: 2-hydroxyhexadecanoic acid, 2-Hydroxybutyric acid (no es), ... igual no compensa, no sale el estearato = octadecanoic acid en este dataset, se hacen medidas en heces de ratones SPF y tb se buscan las bacterias que lo producen en nuestro dataset, pero esos son otros experimentos!
 
 
-```{r}
-library(MSnbase)
-library(xcms)
-library(CAMERA)
-
-# 1. Archivos mzML
-files <- list.files("C:/Users/pele_/Desktop/ST003680_Rawfiles/centroiding", pattern = ".mzML", full.names = TRUE)
-
-# 2. Carga en modo eficiente
-raw_data <- readMSData(files, mode = "onDisk")
-
-# 3. Crear objeto de procesamiento
-p <- CentWaveParam(ppm = 15, peakwidth = c(5, 20), snthresh = 10)
-xdata <- findChromPeaks(raw_data, param = p)
-
-# 4. Alineamiento y agrupamiento
-sample_groups <- rep(1, length(fileNames(xdata))) #agrupo ratones según microbiota recibida (KC o SC)
-xdata <- groupChromPeaks(xdata, param = PeakDensityParam(sampleGroups = sample_groups))
-xdata <- adjustRtime(xdata, param = ObiwarpParam())
-xdata <- fillChromPeaks(xdata)
-
-# 6. Anotación con CAMERA
-xset <- as(xdata, "xcmsSet")
-anotado <- xsAnnotate(xset)
-anotado <- groupFWHM(anotado)
-anotado <- findIsotopes(anotado)
-anotado <- findAdducts(anotado, polarity = "positive")
-
-```
-
-```{r}
-#Creación de objeto SummarizedExperiment
-# COMPROBAR QUE RDA OBTENIDO EN REPO GITHUB
-
-library(SummarizedExperiment)
-
-# 1. Extraer matriz de intensidades
-matriz <- featureValues(xdata)
-
-# 2. Metadatos de muestras (puedes cargar desde .csv si no tienes)
-metadatos_muestras <- read.csv("sample_metadata.csv", row.names = 1)
-
-# 3. Metadatos de picos / features (m/z, RT)
-metadatos_picos <- as.data.frame(featureDefinitions(xdata))
-
-# 4. Crear el SummarizedExperiment
-se <- SummarizedExperiment(
-  assays = list(intensities = as.matrix(matriz)),
-  colData = metadatos_muestras,
-  rowData = metadatos_picos
-)
-
-# Guardar como RDA
-save(se, file = "metabolomics_se.Rda")
-```
-
-
 
 # Resultados
 
@@ -212,6 +157,163 @@ save(se, file = "metabolomics_se.Rda")
 código, análisis, resultados con tablas y figuras, y explicaciones
 
 4-5 páginas
+
+```{r}
+library(SummarizedExperiment)
+library(tidyverse)
+
+# Leer archivo completo como texto
+file <- "ST003680_AN006041_metadata_data.txt"
+raw_lines <- readLines(file)
+
+# Localizar secciones de datos
+start_data <- grep("MS_METABOLITE_DATA_START", raw_lines) + 2
+end_data   <- grep("MS_METABOLITE_DATA_END", raw_lines) - 1
+start_meta_rt <- grep("METABOLITES_START", raw_lines) + 1
+end_meta_rt   <- grep("METABOLITES_END", raw_lines) - 1
+
+# Leer matriz de expresión (metabolitos × muestras)
+expr_raw <- read.delim(file, skip = start_data - 1, nrows = 175, check.names = FALSE) # 175 metabolitos = filas
+expr_raw_HEADER <- read.delim(file, skip = start_data - 2, nrows = 177, check.names = FALSE)
+
+# Convertir a numérico (muestras × metabolitos)
+expr_data <- apply(expr_raw[, -1], 2, as.numeric) %>% 
+  as.data.frame()
+
+# Asignar nombres correctos
+rownames(expr_data) <- expr_raw[[1]] # Nombres de metabolitos sin término "Factor"
+colnames(expr_data) <- colnames(expr_raw_HEADER)[-1]  # Nombres de muestras sin término "Samples"   
+
+
+# 1) Metadatos de muestras
+factor_line <- raw_lines[start_data - 1]
+factors <- unlist(strsplit(factor_line, "\t"))[-1]
+#condition <- str_extract(factors, "Condition:KC|Condition:SC")
+#condition <- str_replace(condition, "Condition:", "")
+
+
+col_data <- data.frame(
+  row.names = colnames(expr_data)
+)
+
+# 2) Metadatos de metabolitos (tiempo de retención)
+metabolite_meta <- read.delim(file,
+                              skip = start_meta_rt - 1,
+                              nrows = end_meta_rt - start_meta_rt + 1,
+                              stringsAsFactors = FALSE)
+colnames(metabolite_meta) <- c("metabolite_name", "retention_time")
+rownames(metabolite_meta) <- metabolite_meta$metabolite_name
+metabolite_meta <- metabolite_meta[rownames(expr_data), , drop = FALSE]
+rowData <- metabolite_meta[rownames(expr_data), ] # debe coincidir con FILAS de expr_data (metabolitos)
+
+# colData debe coincidir con COLUMNAS de expr_data (muestras)
+colData <- col_data[colnames(expr_data), ]
+
+# Creo la clase SummarizedExperiment
+se <- SummarizedExperiment(
+  assays = list(intensity = as.matrix(expr_data)),  # Matriz numérica con todo el dataset
+  rowData = rowData,   # Nombres de metabolitos
+  colData = colData    # Nombres de muestras
+)
+
+# Guardo objeto SummarizeExperiment en formato binario .Rda
+save(se, file = "metabolomics_dataset.Rda")
+```
+
+
+```{r}
+#Código replicado para incluir metadatos
+# Leer archivo completo como texto
+file <- "ST003680_AN006041_metadata_data.txt"
+raw_lines <- readLines(file)
+
+# Localizar secciones de datos
+start_data <- grep("MS_METABOLITE_DATA_START", raw_lines) + 2
+end_data   <- grep("MS_METABOLITE_DATA_END", raw_lines) - 1
+start_meta_rt <- grep("METABOLITES_START", raw_lines) + 1
+end_meta_rt   <- grep("METABOLITES_END", raw_lines) - 1
+
+# Leer matriz de expresión (metabolitos × muestras)
+expr_raw <- read.delim(file, skip = start_data - 1, nrows = 175, check.names = FALSE) # 175 metabolitos = filas
+expr_raw_HEADER <- read.delim(file, skip = start_data - 2, nrows = 177, check.names = FALSE)
+
+# Convertir a numérico (muestras × metabolitos)
+expr_data <- apply(expr_raw[, -1], 2, as.numeric) %>% 
+  as.data.frame()
+
+# Asignar nombres correctos
+rownames(expr_data) <- expr_raw[[1]] # Nombres de metabolitos sin término "Factor"
+colnames(expr_data) <- colnames(expr_raw_HEADER)[-1]  # Nombres de muestras sin término "Samples"   
+
+
+# 1) Metadatos de muestras
+factor_line <- raw_lines[start_data - 1]
+factors <- unlist(strsplit(factor_line, "\t"))[-1]
+#condition <- str_extract(factors, "Condition:KC|Condition:SC")
+#condition <- str_replace(condition, "Condition:", "")
+
+
+col_data <- data.frame(
+  row.names = colnames(expr_data)
+)
+
+# 2) Metadatos de metabolitos (tiempo de retención)
+metabolite_meta <- read.delim(file,
+                              skip = start_meta_rt - 1,
+                              nrows = end_meta_rt - start_meta_rt + 1,
+                              stringsAsFactors = FALSE)
+colnames(metabolite_meta) <- c("metabolite_name", "retention_time")
+rownames(metabolite_meta) <- metabolite_meta$metabolite_name
+metabolite_meta <- metabolite_meta[rownames(expr_data), , drop = FALSE]
+
+# rowData debe coincidir con FILAS de expr_data (metabolitos)
+# MODIFICO A PARTIR DE AQUÍIII! rowData <- metabolite_meta[rownames(expr_data), ]
+
+rowData <- DataFrame(
+  Metabolito = rownames(expr_data),
+  RetentionTime = metabolite_meta[rownames(metabolite_meta),], # Tiempo de retención
+  row.names = rownames(expr_data) # Asegúrate de que coincidan con las filas de expr_data
+)
+
+# colData debe coincidir con COLUMNAS de expr_data (muestras)
+colData <- col_data[colnames(expr_data), ]
+
+# Creo la clase SummarizedExperiment
+se_2 <- SummarizedExperiment(
+  assays = list(intensity = as.matrix(expr_data)),  # Matriz numérica con todo el dataset
+  rowData = rowData,   # Nombres de metabolitos
+  colData = colData    # Nombres de muestras
+)
+
+# Agregar metadatos generales al componente metadata
+#Meter cada parámetro leído del .txt
+
+metadata(se_2) <- list(
+  ExperimentDescription = "Estudio metabolómico en muestras fecales de ratones",
+  Date = Sys.Date(),
+  Investigator = "Dr. Juan Pérez",
+  PublicationReference = "DOI:10.1234/metabolomics.2025"
+)
+
+# Guardo metadatos del objeto SummarizeExperiment en formato binario .Rda
+#Todo
+#save(se, file = "metabolomics_dataset_2.qmd")
+
+#Solo metadatos
+#?? save(metadata(se_2), file = "metabolomics_metadata.qmd")
+```
+```{r}
+se_2
+assay(se_2)       # Accede a la matriz principal
+rowData(se_2)     # Accede a los metadatos de las características
+colData(se_2)     # Accede a los metadatos de las muestras
+```
+
+```{r}
+#Análisis exploratorio
+
+```
+
 
 
 # Discusión
