@@ -1,0 +1,493 @@
+#METABOLOMICS WORKBENCH mdm_20250120_012241 DATATRACK_ID:5543 STUDY_ID:ST003680 ANALYSIS_ID:AN006041 PROJECT_ID:PR002283
+VERSION             	1
+CREATED_ON             	January 21, 2025, 1:16 pm
+#PROJECT
+PR:PROJECT_TITLE                 	Ketogenic diet suppresses colorectal cancer through the gut microbiome long
+PR:PROJECT_TITLE                 	chain fatty acid stearate
+PR:PROJECT_SUMMARY               	Our manuscript entitled “Ketogenic diet suppresses colorectal cancer through
+PR:PROJECT_SUMMARY               	the gut microbiome long chain fatty acid stearate” describes a reduced colonic
+PR:PROJECT_SUMMARY               	tumor burden upon ketogenic diet (KD) consumption in a CRC mouse model with a
+PR:PROJECT_SUMMARY               	humanized microbiome. Importantly, we demonstrate a causal relationship through
+PR:PROJECT_SUMMARY               	microbiome transplantation into germ-free mice, whereby alterations in the gut
+PR:PROJECT_SUMMARY               	microbiota were maintained in the absence of continued selective pressure from
+PR:PROJECT_SUMMARY               	the KD. Specifically, we identify a shift toward bacterial species that produce
+PR:PROJECT_SUMMARY               	stearic acid in ketogenic conditions, whereas consumers were depleted, resulting
+PR:PROJECT_SUMMARY               	in elevated levels of free stearate in the gut lumen. This microbial product
+PR:PROJECT_SUMMARY               	demonstrates tumor-suppressing properties by inducing apoptosis in cancer cells
+PR:PROJECT_SUMMARY               	and decreasing colonic Th17 immune cell populations. As part of this study, we
+PR:PROJECT_SUMMARY               	used different metabolomics workflows to study metabolites in mouse fecal and
+PR:PROJECT_SUMMARY               	plasma samples as well as the used rodent diet.
+PR:INSTITUTE                     	University of Luxembourg
+PR:LAST_NAME                     	Letellier
+PR:FIRST_NAME                    	Elisabeth
+PR:ADDRESS                       	6, avenue du Swing, Belval, Esch, 4367, Luxembourg
+PR:EMAIL                         	madita.brauer@uni.lu
+PR:PHONE                         	(+352) 46 66 44 6954
+#STUDY
+ST:STUDY_TITLE                   	Ketogenic diet suppresses colorectal cancer through the gut microbiome long
+ST:STUDY_TITLE                   	chain fatty acid stearate - untargeted LCMS data from CMT experiment
+ST:STUDY_SUMMARY                 	Germ-free mice received cecal content from mice having received a ketogenic diet
+ST:STUDY_SUMMARY                 	(KC) or from mice having received a standard diet (SC) and were subjected to
+ST:STUDY_SUMMARY                 	AOM/DSS treatment as described in Tsenkova et al. (2025). Mouse fecal pellets
+ST:STUDY_SUMMARY                 	were analyzed by a LC-MS approach to characterize the fecal metabolome of mice
+ST:STUDY_SUMMARY                 	from different treatment groups. Metabolites were extracted from mouse fecal
+ST:STUDY_SUMMARY                 	samples as described in the method file. Resulting samples were used for LC-MS
+ST:STUDY_SUMMARY                 	untargeted metabolomics screen using a Vanquish UHPLC (ThermoFisher Scientific),
+ST:STUDY_SUMMARY                 	coupled to a Q Exactive HF mass spectrometer (ThermoFisher Scientific).
+ST:INSTITUTE                     	University of Luxembourg
+ST:LAST_NAME                     	Letellier
+ST:FIRST_NAME                    	Elisabeth
+ST:ADDRESS                       	6, avenue du Swing, Belval, Esch, 4367, Luxembourg
+ST:EMAIL                         	madita.brauer@uni.lu
+ST:PHONE                         	(+352) 46 66 44 6954
+#SUBJECT
+SU:SUBJECT_TYPE                  	Mammal
+SU:SUBJECT_SPECIES               	Mus musculus
+SU:TAXONOMY_ID                   	10090
+#SUBJECT_SAMPLE_FACTORS:         	SUBJECT(optional)[tab]SAMPLE[tab]FACTORS(NAME:VALUE pairs separated by |)[tab]Raw file names and additional sample data
+SUBJECT_SAMPLE_FACTORS           	16	KC_16	Sample source:mouse feces | Condition:KC	RAW_FILE_NAME(raw_file_name)=MT011_LC_GlasgowMA_Mouse_feces_KC_16_1.mzML
+SUBJECT_SAMPLE_FACTORS           	18	KC_18	Sample source:mouse feces | Condition:KC	RAW_FILE_NAME(raw_file_name)=MT011_LC_GlasgowMA_Mouse_feces_KC_18_1.mzML
+SUBJECT_SAMPLE_FACTORS           	23	KC_23	Sample source:mouse feces | Condition:KC	RAW_FILE_NAME(raw_file_name)=MT011_LC_GlasgowMA_Mouse_feces_KC_23_1.mzML
+SUBJECT_SAMPLE_FACTORS           	28	KC_28	Sample source:mouse feces | Condition:KC	RAW_FILE_NAME(raw_file_name)=MT011_LC_GlasgowMA_Mouse_feces_KC_28_1.mzML
+SUBJECT_SAMPLE_FACTORS           	34	KC_34	Sample source:mouse feces | Condition:KC	RAW_FILE_NAME(raw_file_name)=MT011_LC_GlasgowMA_Mouse_feces_KC_34_1.mzML
+SUBJECT_SAMPLE_FACTORS           	38	KC_38	Sample source:mouse feces | Condition:KC	RAW_FILE_NAME(raw_file_name)=MT011_LC_GlasgowMA_Mouse_feces_KC_38_1.mzML
+SUBJECT_SAMPLE_FACTORS           	42	KC_42	Sample source:mouse feces | Condition:KC	RAW_FILE_NAME(raw_file_name)=MT011_LC_GlasgowMA_Mouse_feces_KC_42_1.mzML
+SUBJECT_SAMPLE_FACTORS           	47	KC_47	Sample source:mouse feces | Condition:KC	RAW_FILE_NAME(raw_file_name)=MT011_LC_GlasgowMA_Mouse_feces_KC_47_1.mzML
+SUBJECT_SAMPLE_FACTORS           	11	SC_11	Sample source:mouse feces | Condition:SC	RAW_FILE_NAME(raw_file_name)=MT011_LC_GlasgowMA_Mouse_feces_SC_11_1.mzML
+SUBJECT_SAMPLE_FACTORS           	14	SC_14	Sample source:mouse feces | Condition:SC	RAW_FILE_NAME(raw_file_name)=MT011_LC_GlasgowMA_Mouse_feces_SC_14_1.mzML
+SUBJECT_SAMPLE_FACTORS           	20	SC_20	Sample source:mouse feces | Condition:SC	RAW_FILE_NAME(raw_file_name)=MT011_LC_GlasgowMA_Mouse_feces_SC_20_1.mzML
+SUBJECT_SAMPLE_FACTORS           	21	SC_21	Sample source:mouse feces | Condition:SC	RAW_FILE_NAME(raw_file_name)=MT011_LC_GlasgowMA_Mouse_feces_SC_21_1.mzML
+SUBJECT_SAMPLE_FACTORS           	30	SC_30	Sample source:mouse feces | Condition:SC	RAW_FILE_NAME(raw_file_name)=MT011_LC_GlasgowMA_Mouse_feces_SC_30_1.mzML
+SUBJECT_SAMPLE_FACTORS           	32	SC_32	Sample source:mouse feces | Condition:SC	RAW_FILE_NAME(raw_file_name)=MT011_LC_GlasgowMA_Mouse_feces_SC_32_1.mzML
+SUBJECT_SAMPLE_FACTORS           	35	SC_35	Sample source:mouse feces | Condition:SC	RAW_FILE_NAME(raw_file_name)=MT011_LC_GlasgowMA_Mouse_feces_SC_35_1.mzML
+SUBJECT_SAMPLE_FACTORS           	41	SC_41	Sample source:mouse feces | Condition:SC	RAW_FILE_NAME(raw_file_name)=MT011_LC_GlasgowMA_Mouse_feces_SC_41_1.mzML
+#COLLECTION
+CO:COLLECTION_SUMMARY            	Germ-free mice received cecal content from mice having received a ketogenic diet
+CO:COLLECTION_SUMMARY            	(KC) or from mice having received a standard diet (SC) and were subjected to
+CO:COLLECTION_SUMMARY            	AOM/DSS treatment as described in Tsenkova et al. (2025). Feces samples were
+CO:COLLECTION_SUMMARY            	collected and flesh frozen in liquid nitrogen and kept at -80 degree until
+CO:COLLECTION_SUMMARY            	metabolite extraction.
+CO:SAMPLE_TYPE                   	Feces
+CO:STORAGE_CONDITIONS            	-80℃
+#TREATMENT
+TR:TREATMENT_SUMMARY             	Germ-free mice received cecal content from mice having received a ketogenic diet
+TR:TREATMENT_SUMMARY             	(KC) or from mice having received a standard diet (SC) and were subjected to
+TR:TREATMENT_SUMMARY             	AOM/DSS treatment as described in Tsenkova et al. (2025). Briefly, mice were
+TR:TREATMENT_SUMMARY             	administered a single intraperitoneal injection of sterile-filtered AOM (10mg/kg
+TR:TREATMENT_SUMMARY             	mouse body weight). Microbiomes were replaced with donor microbiomes via oral
+TR:TREATMENT_SUMMARY             	gavage. Mice were administered a total of three cycles of DSS, with a
+TR:TREATMENT_SUMMARY             	two-week-long recovery period between each cycle. DSS was refreshed mid-cycle.
+TR:TREATMENT_SUMMARY             	Half of the mice were randomly allocated to each dietary condition at the end of
+TR:TREATMENT_SUMMARY             	the last cycle of DSS.
+#SAMPLEPREP
+SP:SAMPLEPREP_SUMMARY            	Mouse fecal pellets were placed in 0.5mL Precellys® tubes (VWR) containing five
+SP:SAMPLEPREP_SUMMARY            	ceramic beads each and MilliQ® water was added to each sample at a 1:16 dry
+SP:SAMPLEPREP_SUMMARY            	weight to water ratio. The samples were homogenized at 6000rpm, for two
+SP:SAMPLEPREP_SUMMARY            	30-second-long cycles at 4°C, in a Precellys®24 Homogenizer (Bertin Corp.).
+SP:SAMPLEPREP_SUMMARY            	Samples were then incubated at 4°C for ten minutes, then centrifuged at maximum
+SP:SAMPLEPREP_SUMMARY            	speed for 10 minutes at 4°C. Samples were maintained on ice and in the dark.
+SP:SAMPLEPREP_SUMMARY            	The supernatant was used for further downstream processing. An ISM was prepared
+SP:SAMPLEPREP_SUMMARY            	(2μg/mL of ribitol, pentanedioic-d6 acid and d-mannose and 10μg/mL
+SP:SAMPLEPREP_SUMMARY            	tridecanoic-d25 acid, 6-chloropurine riboside, 4-chloro-DL-phenylalanine,
+SP:SAMPLEPREP_SUMMARY            	Nε-trifluoroacetyl-L-lysine and thionicotinamide adenine dinucleotide
+SP:SAMPLEPREP_SUMMARY            	(Sigma-Aldrich) in MilliQ® water). 40μL of the ISM was added to 100μL of the
+SP:SAMPLEPREP_SUMMARY            	fecal supernatant fluid. 80μL of this mixture was added to 320μL of methanol,
+SP:SAMPLEPREP_SUMMARY            	vortexed thoroughly, incubated for five minutes at 4°C at maximum speed in an
+SP:SAMPLEPREP_SUMMARY            	Eppendorf ThermoMixer, and then centrifugated for five minutes at 4°C at
+SP:SAMPLEPREP_SUMMARY            	maximum speed. 350μL of supernatant were added to 280μL of chloroform. 180μL
+SP:SAMPLEPREP_SUMMARY            	of MilliQ® water were added, the samples were vortexed thoroughly, incubated
+SP:SAMPLEPREP_SUMMARY            	for ten minutes at 4°C at maximum speed in an ThermoMixer (Eppendorf), then
+SP:SAMPLEPREP_SUMMARY            	centrifugated for five minutes at 4°C at maximum speed. The extract was then
+SP:SAMPLEPREP_SUMMARY            	split – 200μL of the upper (polar) phase were aliquoted into a GC vial with a
+SP:SAMPLEPREP_SUMMARY            	micro-insert and the rest of the upper (polar) phase was filtered through a
+SP:SAMPLEPREP_SUMMARY            	PHENEX-RC syringe filter (Phenomenex), and 200μL were retained in Eppendorf
+SP:SAMPLEPREP_SUMMARY            	tubes for further processing. Then, the temperature of the SpeedVac® was
+SP:SAMPLEPREP_SUMMARY            	increased to 25°C for 25 minutes to avoid water condensation on the surface of
+SP:SAMPLEPREP_SUMMARY            	the glass vial. Samples were protected from light exposure and stored at -80°C.
+SP:SAMPLEPREP_SUMMARY            	Samples for LC-MS analysis (polar) were reconstituted in 80μL 50% ACN in water,
+SP:SAMPLEPREP_SUMMARY            	transferred into LC vials for LC-MS analysis and analyzed on a Vanquish UHPLC
+SP:SAMPLEPREP_SUMMARY            	(ThermoFisher Scientific), coupled to a Q Exactive HF mass spectrometer
+SP:SAMPLEPREP_SUMMARY            	(ThermoFisher Scientific).
+#CHROMATOGRAPHY
+CH:CHROMATOGRAPHY_TYPE           	HILIC
+CH:INSTRUMENT_NAME               	Thermo Vanquish
+CH:COLUMN_NAME                   	SeQuant ZIC- pHILIC (150 x 2.1mm,5um)
+CH:SOLVENT_A                     	100% water, 0.01% formic acid
+CH:SOLVENT_B                     	90% acetonitrile, 0.1% formic acid, 20 mM ammonium acetate
+CH:FLOW_GRADIENT                 	90 % B for 1.5 min, followed by a decrease to 20% B within 15 min, then 20% B
+CH:FLOW_GRADIENT                 	for 2 min, increase to 90% B within 2 min, then 90% B for 13 min
+CH:FLOW_RATE                     	200 µl/ml
+CH:COLUMN_TEMPERATURE            	50°C
+#ANALYSIS
+AN:ANALYSIS_TYPE                 	MS
+#MS
+MS:INSTRUMENT_NAME               	Thermo Q Exactive HF-X Orbitrap
+MS:INSTRUMENT_TYPE               	Orbitrap
+MS:MS_TYPE                       	ESI
+MS:ION_MODE                      	UNSPECIFIED
+MS:MS_COMMENTS                   	Resolution - 120,000, m/z range - 60-900, AGC target - 1e6, maximum injection
+MS:MS_COMMENTS                   	time – 70 ms. ddMS2 was applied using the following settings: Resolution -
+MS:MS_COMMENTS                   	30,000, AGC target - 5e5, maximum injection time – 70, topN - 5, Normalized
+MS:MS_COMMENTS                   	collision energy – 20. Samples were acquired in positive and negative
+MS:MS_COMMENTS                   	ionization mode simultaneously (polarity switching).
+#MS_METABOLITE_DATA
+MS_METABOLITE_DATA:UNITS	normalized area
+MS_METABOLITE_DATA_START
+Samples	KC_16	KC_18	KC_23	KC_28	KC_34	KC_38	KC_42	KC_47	SC_11	SC_14	SC_20	SC_21	SC_30	SC_32	SC_35	SC_41
+Factors	Sample source:mouse feces | Condition:KC	Sample source:mouse feces | Condition:KC	Sample source:mouse feces | Condition:KC	Sample source:mouse feces | Condition:KC	Sample source:mouse feces | Condition:KC	Sample source:mouse feces | Condition:KC	Sample source:mouse feces | Condition:KC	Sample source:mouse feces | Condition:KC	Sample source:mouse feces | Condition:SC	Sample source:mouse feces | Condition:SC	Sample source:mouse feces | Condition:SC	Sample source:mouse feces | Condition:SC	Sample source:mouse feces | Condition:SC	Sample source:mouse feces | Condition:SC	Sample source:mouse feces | Condition:SC	Sample source:mouse feces | Condition:SC
+2-Aminobenzoic acid	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+2-Hydroxyadipic acid	0.004	0.004	0.002	0.003	0.002	0.002	0.004	0.002	0.004	0.002	0.001	0.002	0.015	0.004	0.002	0.014
+2-Hydroxybutyric acid	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+2-Ketobutyric acid	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+2-Methylglutaric acid	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+3,4-Dihydroxybenzeneacetic acid	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+3-Hydroxyanthranilic acid	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+3-Hydroxyglutaric acid	0.037	0.01	0.027	0.026	0.019	0.038	0.016	0.019	0.013	0.008	0.014	0.025	0.042	0.014	0.011	0.051
+3-Indolebutyric acid	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+3-Indoleglyoxylic acid	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+4-Hydroxy-2-oxoglutaric acid	0.001	0.002	0	0.002	0.002	0.002	0.002	0.002	0	0.001	0.001	0.001	0.001	0.002	0.001	0.001
+4-Hydroxy-L-glutamic acid	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+4-Hydroxyproline	0.019	0.011	0.02	0.021	0.043	0.037	0.033	0.028	0.017	0.011	0.014	0.044	0.035	0.023	0.017	0.029
+5-Hydroxyindoleacetic acid	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+5-Hydroxy-L-tryptophan	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+5-Methyl-DL-Tryptophan	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+6-Phosphogluconic acid	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Acetyl-CoA	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Acetylcysteine	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Adenine	0.022	0.007	0.035	0.011	0.008	0.014	0.014	0.008	0.062	0.084	0.013	0.08	0.025	0.166	0.15	0.023
+Adenosine monophosphate	0.002	0.002	0.089	0	0.001	0.002	0.002	0.002	0.002	0.002	0.002	0.001	0.002	0.009	0.002	0.002
+Adenosine triphosphate	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+ADP	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+AICAR	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Betaine	0.923	0.906	0.966	0.411	1.243	0.732	1.069	1.02	1.09	0.41	0.919	0.345	0.114	1.157	0.415	0.472
+Biotin	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+CDP	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Choline	0.201	0.312	0.168	0.222	0.207	0.217	0.296	0.31	0.526	0.238	0.343	0.211	0.2	0.268	0.454	0.15
+cis-Aconitic acid	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Citramalic acid	0.015	0.013	0.006	0.013	0.021	0.014	0.022	0.021	0.007	0.006	0.006	0.004	0.005	0.011	0.007	0.006
+Citric acid	0.234	0.188	0.223	0.161	0.181	0.306	0.235	0.172	0.164	0.135	0.196	0.117	0.153	0.169	0.092	0.217
+Creatine	0.161	0.158	0.382	0.023	0.104	0.253	0.085	0.096	0.625	0.367	0.642	0.195	0.06	0.072	0.637	0.047
+Creatinine	0.048	0.031	0.045	0.018	0.024	0.038	0.023	0.023	0.08	0.039	0.1	0.024	0.026	0.023	0.047	0.015
+Cytidine monophosphate	0	0.001	0.004	0	0.001	0	0.001	0.001	0.001	0.002	0.002	0.001	0.001	0.002	0.001	0.001
+Cytidine triphosphate	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Cytosine	0.005	0.012	0.016	0.008	0.013	0.009	0.013	0.014	0.005	0.005	0.007	0.01	0.004	0.008	0.008	0.007
+D-2-Hydroxyglutaric acid	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Deoxyadenosine triphosphate	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+D-Erythrose 4-phosphate	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Desaminotyrosine	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+D-Fructose	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+D-Galactose	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+D-Glucose	0.032	0.058	0.018	0.051	0.052	0.026	0.048	0.065	0.012	0.029	0.02	0.025	0.029	0.073	0.018	0.017
+D-Glucuronic acid	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+D-Glycerate 3-phosphate	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+D-Mannose	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+D-Mannose 1-phosphate	0.011	0.004	0.005	0.021	0.014	0.012	0.018	0.006	0.001	0.001	0.007	0.005	0.012	0.001	0	0.011
+D-Ribose 5-phosphate	0.003	0.002	0.004	0.019	0.011	0.002	0.013	0.004	0.001	0.001	0.004	0.002	0.008	0.001	0	0.013
+D-Sedoheptulose 7-phosphate	0.01	0.003	0.007	0.039	0.021	0.012	0.024	0.006	0.001	0.001	0.008	0.006	0.028	0.001	0	0.027
+dUMP	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+FAD	0.001	0	0.007	0.003	0.002	0.002	0.001	0.001	0	0	0	0.001	0.001	0.001	0	0.001
+Flavin Mononucleotide	0.002	N/F	0.002	0.009	0.003	0.004	0.003	N/F	N/F	N/F	0.001	0.001	0.002	N/F	N/F	0.003
+Fructose 1,6-bisphosphate	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Fructose 6-phosphate	0.019	0.006	0.01	0.032	0.021	0.015	0.028	0.008	0.001	0.001	0.008	0.005	0.017	0.002	0	0.012
+Fumaric acid	0.004	0.005	0.004	0.008	0.006	0.005	0.008	0.007	0.013	0.008	0.018	0.012	0.011	0.012	0.008	0.009
+Galactose 1-phosphate	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Galacturonic acid	0.012	0.008	0.007	0.007	0.007	0.012	0.009	0.006	0.006	0.007	0.01	0.008	0.008	0.009	0.004	0.009
+Gamma Glutamylglutamic acid	0.006	0.002	0.003	0.002	0.003	0.007	0.002	0.001	0	0.001	0.001	0.001	0.001	0.001	0	0.001
+Gamma-Glutamylcysteine	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Glucaric acid	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Gluconic acid	0.066	0.008	0.026	0.007	0.01	0.091	0.012	0.021	0.008	0.013	0.028	0.009	0.016	0.018	0.005	0.015
+Glucose 1-phosphate	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Glucose 6-phosphate	0.045	0.017	0.025	0.076	0.052	0.037	0.068	0.024	0.003	0.003	0.02	0.017	0.047	0.005	0	0.032
+Glutaric acid	0.001	0.001	0.002	0.004	0.002	0.002	0.001	0.001	0.008	0.002	0.001	0.002	0.006	0.005	0.001	0.005
+Glutathione	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Glyceric acid	0.059	0.041	0.052	0.005	0.011	0.07	0.043	0.025	0.021	0.041	0.04	0.029	0.022	0.034	0.015	0.025
+Glycerol 3-phosphate	0.003	0.002	0.009	0.005	0.002	0.002	0.005	0.005	0.004	0.001	0.006	0.003	0.003	0.002	0.002	0.003
+Glycine	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0	0.001	0	0	0.001	0.001	0	0	0.001
+Guanine	0.017	0.051	0.014	0.044	0.045	0.044	0.074	0.036	0.005	0.026	0.01	0.017	0.028	0.022	0.012	0.046
+Guanosine diphosphate	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Guanosine diphosphate mannose	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Guanosine monophosphate	0	0	0.002	0	0	0	0.001	0	0	0.001	0.001	0	0.001	0.001	0	0.001
+Guanosine triphosphate	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Homocysteine	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Hydroxykynurenine	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Hydroxypropanedioic acid	0.001	0	0	0	0	0	0.001	0	0	0	0.001	0	0	0	0	0
+Indole	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Indole-3-acetamide	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Indole-3-carboxaldehyde	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Indole-3-carboxylic acid	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Indole-3-propionic acid	0.006	0.005	0.002	0.005	0.01	0.005	0.005	0.009	0.005	0.007	0.006	0.016	0.031	0.008	0.006	0.015
+Indoleacetaldehyde	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Indoleacetic acid	0.047	0.047	0.02	0.069	0.067	0.081	0.057	0.041	0.025	0.051	0.045	0.053	0.05	0.05	0.033	0.029
+Indoleacrylic acid	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Indolelactic acid	0.003	0.004	N/F	N/F	N/F	N/F	N/F	0.014	0.002	0.011	0.013	0.014	N/F	0.027	0.013	N/F
+Indolepyruvate	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Inosine	0.149	0.068	0.065	0.263	0.227	0.199	0.13	0.118	0.013	0.025	0.08	0.037	0.147	0.02	0.009	0.215
+Inosinic acid	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Isocitric acid	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Itaconic acid	N/F	N/F	N/F	N/F	N/F	N/F	N/F	N/F	N/F	N/F	N/F	N/F	N/F	N/F	N/F	N/F
+Ketoleucine	0.103	0.047	0.017	0.058	0.024	0.053	0.032	0.039	0.023	0.024	0.041	0.021	0.06	0.022	0.017	0.03
+Kynurenic acid	0.017	0.032	0.007	0.03	0.045	0.011	0.059	0.032	0.023	0.034	0.023	0.013	0.01	0.028	0.029	0.017
+L-Acetylcarnitine	0.024	0.037	0.028	0.002	0.178	0.052	0.202	0.058	0.236	0.128	0.16	0.019	0.004	0.022	0.064	0.004
+L-Alanine	0.109	0.033	0.076	0.108	0.043	0.109	0.04	0.028	0.033	0.028	0.037	0.036	0.077	0.02	0.031	0.035
+L-Arginine	0.157	0.034	0.447	0.32	0.023	0.064	0.04	0.019	0.007	0.015	0.022	0.013	0.072	0.012	0.003	0.039
+L-Asparagine	0.017	0.008	0.023	0.033	0.013	0.018	0.011	0.005	N/F	N/F	N/F	N/F	N/F	N/F	N/F	N/F
+L-Aspartic acid	0.067	0.014	0.09	0.057	0.026	0.075	0.028	0.015	0.035	0.018	0.023	0.036	0.046	0.014	0.025	0.035
+L-Cystathionine	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+L-Cystine	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+L-Glutamic acid	0.196	0.046	0.238	0.257	0.137	0.273	0.143	0.074	0.054	0.026	0.055	0.1	0.178	0.05	0.036	0.171
+L-Glutamine	0.141	0.066	0.149	0.178	0.082	0.12	0.083	0.056	0.069	0.064	0.064	0.041	0.083	0.042	0.023	0.051
+L-Histidine	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+L-Isoleucine	0.452	0.092	0.232	0.545	0.086	0.317	0.096	0.058	0.045	0.058	0.069	0.083	0.224	0.038	0.03	0.079
+L-Kynurenine	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+L-Lactic acid	31.191	20.868	8.668	4.627	43.462	7.044	5.784	49.681	35.935	45.752	52.905	4.231	2.464	84.727	47.699	2.958
+L-Leucine	0.697	0.09	0.359	0.681	0.102	0.406	0.115	0.053	0.073	0.051	0.091	0.082	0.301	0.03	0.031	0.074
+L-Lysine	0.039	0.007	0.033	0.102	0.013	0.032	0.011	0.006	0.006	0.004	0.007	0.008	0.018	0.004	0.003	0.01
+L-Malic acid	0.028	0.034	0.03	0.058	0.042	0.036	0.058	0.048	0.085	0.056	0.124	0.079	0.067	0.083	0.058	0.058
+L-Methionine	0.408	0.075	0.041	0.484	0.099	0.344	0.1	0.054	0.048	0.048	0.061	0.074	0.143	0.045	0.034	0.082
+L-Phenylalanine	0.652	0.126	0.327	0.762	0.111	0.353	0.125	0.068	0.08	0.09	0.095	0.081	0.282	0.061	0.06	0.074
+L-Proline	0.856	0.59	0.572	0.705	0.768	0.999	0.737	0.581	0.299	0.516	0.584	0.512	0.637	0.595	0.539	0.59
+L-Serine	0.013	0.007	0.008	0.014	0.006	0.014	0.007	0.005	0.004	0.005	0.006	0.007	0.007	0.004	0.003	0.006
+L-Threonine	0.079	0.028	0.059	0.101	0.052	0.087	0.04	0.029	0.019	0.024	0.036	0.037	0.053	0.022	0.015	0.04
+L-Tryptophan	0.083	0.027	0.063	0.097	0.031	0.067	0.031	0.016	0.011	0.028	0.026	0.023	0.046	0.024	0.053	0.025
+L-Tyrosine	0.331	0.064	0.256	0.501	0.092	0.242	0.077	0.035	0.045	0.044	0.058	0.052	0.154	0.037	0.049	0.061
+L-Valine	0.569	0.106	0.266	0.653	0.109	0.324	0.112	0.068	0.08	0.082	0.1	0.092	0.301	0.053	0.064	0.069
+Maleic acid	0.185	0.24	0.358	0.183	0.187	0.227	0.218	0.263	0.241	0.204	0.392	0.207	0.156	0.184	0.223	0.262
+Malonic acid	0.004	0.003	0.008	0.002	0.003	0.003	0.004	0.003	0.002	0.002	0.003	0.003	0.003	0.003	0.002	0.003
+Melatonin	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Methylmalonic acid	0	0.001	0.001	0.001	0.001	N/F	0.001	0.001	0.001	N/F	N/F	0.001	0.001	N/F	N/F	N/F
+Myo-inositol 1-phosphate	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+N-Acetylglutamic acid	0.12	0.09	0.139	0.154	0.157	0.161	0.124	0.106	0.06	0.06	0.075	0.122	0.143	0.123	0.092	0.147
+N-Acetyl-L-aspartic acid	0.093	0.049	0.088	0.132	0.098	0.119	0.078	0.09	0.061	0.047	0.072	0.089	0.074	0.118	0.066	0.088
+N-Acetylserotonin	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+NAD	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+NADH	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+NADP	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+NADPH	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+N-Formyl-L-methionine	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Niacinamide	0.015	0.008	0.989	0.045	0.105	0.018	0.006	0.01	0.054	0.039	0.007	0.009	0.01	0.038	0.078	0.008
+Nicotinic acid	0.267	0.091	0.02	0.523	0.314	0.341	0.279	0.139	0.037	0.033	0.076	0.174	0.34	0.077	0.026	0.397
+O-Acetylserine	1.019	1.299	0.53	1.322	1.879	1.334	1.571	1.084	1.602	1.313	1.199	2.051	1.151	1.999	2.869	1.567
+O-Phosphoethanolamine	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Ornithine	0.008	0.002	0.002	0.009	0.003	0.002	0.002	0.002	0.002	0.001	0.001	0.002	0.003	0.002	0.002	0.002
+Orotic acid	0.408	0.423	0.16	0.322	0.29	0.336	0.209	0.281	0.302	0.249	0.254	0.125	0.276	0.301	0.187	0.192
+Oxalacetic acid	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Oxalic acid	0.026	0.023	0.026	0.021	0.023	0.034	0.026	0.023	0.02	0.02	0.022	0.02	0.025	0.019	0.021	0.026
+Oxidized glutathione	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Oxoglutaric acid	0.022	0.015	0.002	0.013	0.013	0.023	0.017	0.028	0.005	0.006	0.017	0.009	0.023	0.015	0.003	0.03
+Pantothenic acid	0.098	0.022	0.027	0.061	0.035	0.089	0.037	0.029	0.025	0.032	0.042	0.066	0.097	0.029	0.018	0.097
+Phenylpyruvic acid	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Phosphoenolpyruvic acid	N/F	0	0	0.002	0.001	N/F	0.002	0	0	N/F	0	0	0.001	0	0	0.002
+Phosphoserine	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Picolinic acid	0.27	0.087	0.016	0.533	0.319	0.341	0.282	0.137	0.034	0.028	0.073	0.174	0.346	0.075	0.022	0.403
+Pyridoxal	N/F	N/F	N/F	N/F	N/F	N/F	N/F	N/F	N/F	N/F	N/F	N/F	N/F	N/F	N/F	N/F
+Pyridoxal 5'-phosphate	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Pyridoxine	0.03	0.056	0.015	0.023	0.015	0.036	0.027	0.057	0.019	0.075	0.053	0.073	0.055	0.086	0.055	0.043
+Pyroglutamic acid	1.852	1.508	1.718	1.202	1.246	1.806	2.093	1.039	1.348	0.907	1.93	2.016	1.745	1.091	1.333	1.668
+Pyrophosphate	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Pyruvic acid	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Quinaldic acid	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Quinolinic acid	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Riboflavin	0.013	N/F	0.005	0.012	0.004	0.021	N/F	N/F	N/F	0.005	0.003	0.003	0.005	0.003	N/F	0.006
+Ribonic acid	0.002	0.008	0.005	0.009	0.008	0.01	0.011	0.005	0.003	N/F	N/F	N/F	N/F	N/F	N/F	N/F
+Sarcosine	0.033	0.018	0.029	0.006	0.009	0.024	0.01	0.014	0.016	0.022	0.053	0.042	0.027	0.017	0.028	0.008
+Serotonin	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Succinic acid	0.013	0.008	0.02	0.009	0.005	0.008	0.006	0.015	0.405	0.064	0.036	0.018	0.028	0.188	0.104	0.029
+Taurine	0.096	0.032	0.051	0.005	0.027	0.039	0.009	0.042	0.085	0.089	0.05	0.03	0.02	0.061	0.051	0.013
+Thiamine	0.003	0	0.001	0.002	0.001	0.002	0.001	0.001	0.001	0.001	0.001	0.002	0.005	0	0	0.005
+Thiamine monophosphate	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Thiamine pyrophosphate	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Thiosulfate	0.037	0.021	0.009	0.021	0.023	0.043	0.018	0.027	0.032	0.011	0.021	0.032	0.051	0.01	0.015	0.036
+Threonic acid	0.001	0.001	0.003	0	0.001	0.001	0.001	0.001	0.004	0.002	0.003	0.001	0	0.001	0.002	0
+Thymidine 5'-triphosphate	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Thymine	0.05	0.021	0.006	0.076	0.042	0.045	0.034	0.021	0.008	0.013	0.019	0.023	0.035	0.009	0.009	0.042
+Tryptamine	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Tryptophol	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Uracil	0.215	0.058	0.052	0.777	0.247	0.227	0.155	0.082	0.038	0.028	0.094	0.132	0.191	0.032	0.015	0.2
+Uric acid	0.011	0.006	0.009	0.018	0.009	0.009	0.006	0.008	0.02	0.009	0.028	0.014	0.011	0.006	0.008	0.007
+Uridine	3.608	1.322	1.117	6.142	3.619	5.689	2.42	2.16	1.11	2.247	2.177	2.015	2.967	1.289	0.669	3.426
+Uridine 5'-diphosphate	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Uridine 5'-monophosphate	0.001	0.001	0.025	0	0	0.001	0.002	0.001	0.002	0.002	0.003	0.002	0.003	0.007	0.002	0.003
+Uridine diphosphategalactose	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Uridine triphosphate	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A
+Xanthurenic acid	0.002	0.003	0	0.002	0.004	0.001	0.008	0.003	0.007	0.004	0.002	0.001	0.001	0.003	0.005	0.001
+MS_METABOLITE_DATA_END
+#METABOLITES
+METABOLITES_START
+metabolite_name	RT
+2-Aminobenzoic acid	2.69
+2-Hydroxyadipic acid	10.27
+2-Hydroxybutyric acid	2.52
+2-Ketobutyric acid	2.26
+2-Methylglutaric acid	2.14
+3,4-Dihydroxybenzeneacetic acid	7.4
+3-Hydroxyanthranilic acid	5.44
+3-Hydroxyglutaric acid	10.63
+3-Indolebutyric acid	1.92
+3-Indoleglyoxylic acid	3.03
+4-Hydroxy-2-oxoglutaric acid	11.3
+4-Hydroxy-L-glutamic acid	10.23
+4-Hydroxyproline	8.99
+5-Hydroxyindoleacetic acid	6.99
+5-Hydroxy-L-tryptophan	9.07
+5-Methyl-DL-Tryptophan	4.06
+6-Phosphogluconic acid	12.63
+Acetyl-CoA	9.44
+Acetylcysteine	2.57
+Adenine	3.33
+Adenosine monophosphate	9.54
+Adenosine triphosphate	11.96
+ADP	10.99
+AICAR	4.53
+Betaine	4.51
+Biotin	3.08
+CDP	12.16
+Choline	12.63
+cis-Aconitic acid	12.28
+Citramalic acid	10.13
+Citric acid	13
+Creatine	9.14
+Creatinine	3.6
+Cytidine monophosphate	11.05
+Cytidine triphosphate	13.07
+Cytosine	4.7
+D-2-Hydroxyglutaric acid	10.44
+Deoxyadenosine triphosphate	11.41
+D-Erythrose 4-phosphate	11.04
+Desaminotyrosine	2.84
+D-Fructose	7.2
+D-Galactose	8.71
+D-Glucose	8.75
+D-Glucuronic acid	10.35
+D-Glycerate 3-phosphate	12.19
+D-Mannose	8.04
+D-Mannose 1-phosphate	11.46
+D-Ribose 5-phosphate	11.13
+D-Sedoheptulose 7-phosphate	11.43
+dUMP	9.4
+FAD	7.75
+Flavin Mononucleotide	7.27
+Fructose 1,6-bisphosphate	13.19
+Fructose 6-phosphate	11.15
+Fumaric acid	11.15
+Galactose 1-phosphate	11.09
+Galacturonic acid	10.6
+Gamma Glutamylglutamic acid	12.24
+Gamma-Glutamylcysteine	9.41
+Glucaric acid	11.64
+Gluconic acid	8.88
+Glucose 1-phosphate	11.05
+Glucose 6-phosphate	11.8
+Glutaric acid	10.29
+Glutathione	9.63
+Glyceric acid	5.69
+Glycerol 3-phosphate	10.41
+Glycine	9.99
+Guanine	6.07
+Guanosine diphosphate	12.71
+Guanosine diphosphate mannose	12.72
+Guanosine monophosphate	11.75
+Guanosine triphosphate	13.56
+Homocysteine	7.12
+Hydroxykynurenine	7.46
+Hydroxypropanedioic acid	11.85
+Indole	1.83
+Indole-3-acetamide	2.03
+Indole-3-carboxaldehyde	1.85
+Indole-3-carboxylic acid	3.51
+Indole-3-propionic acid	2.15
+Indoleacetaldehyde	1.95
+Indoleacetic acid	3.1
+Indoleacrylic acid	2.6
+Indolelactic acid	2.74
+Indolepyruvate	2.24
+Inosine	4.84
+Inosinic acid	10.85
+Isocitric acid	13.09
+Itaconic acid	9.94
+Ketoleucine	1.69
+Kynurenic acid	1.86
+L-Acetylcarnitine	4.3
+L-Alanine	8.99
+L-Arginine	15.7
+L-Asparagine	9.68
+L-Aspartic acid	10.08
+L-Cystathionine	11.26
+L-Cystine	10.6
+L-Glutamic acid	9.56
+L-Glutamine	9.61
+L-Histidine	9.24
+L-Isoleucine	4.83
+L-Kynurenine	4.56
+L-Lactic acid	3.38
+L-Leucine	4.32
+L-Lysine	15.2
+L-Malic acid	11.2
+L-Methionine	5.16
+L-Phenylalanine	3.84
+L-Proline	6.65
+L-Serine	10
+L-Threonine	8.7
+L-Tryptophan	5.51
+L-Tyrosine	7.31
+L-Valine	5.99
+Maleic acid	3.53
+Malonic acid	10.36
+Melatonin	1.65
+Methylmalonic acid	9.27
+Myo-inositol 1-phosphate	12.18
+N-Acetylglutamic acid	9.85
+N-Acetyl-L-aspartic acid	10.22
+N-Acetylserotonin	1.91
+NAD	9.7
+NADH	9.12
+NADP	11.96
+NADPH	11.96
+N-Formyl-L-methionine	2.1
+Niacinamide	2.3
+Nicotinic acid	2.45
+O-Acetylserine	4.22
+O-Phosphoethanolamine	11
+Ornithine	14.34
+Orotic acid	4.15
+Oxalacetic acid	11.8
+Oxalic acid	12.22
+Oxidized glutathione	12.18
+Oxoglutaric acid	10.8
+Pantothenic acid	2.7
+Phenylpyruvic acid	1.7
+Phosphoenolpyruvic acid	12.54
+Phosphoserine	11.63
+Picolinic acid	2.81
+Pyridoxal	2.5
+Pyridoxal 5'-phosphate	9.6
+Pyridoxine	2.64
+Pyroglutamic acid	4.06
+Pyrophosphate	10.12
+Pyruvic acid	2.84
+Quinaldic acid	2.05
+Quinolinic acid	10.73
+Riboflavin	2.8
+Ribonic acid	7.59
+Sarcosine	8.27
+Serotonin	16.01
+Succinic acid	10.38
+Taurine	8.94
+Thiamine	12.7
+Thiamine monophosphate	9.61
+Thiamine pyrophosphate	10.14
+Thiosulfate	14.39
+Threonic acid	7.26
+Thymidine 5'-triphosphate	11.6
+Thymine	2.3
+Tryptamine	13.61
+Tryptophol	1.84
+Uracil	2.96
+Uric acid	7.71
+Uridine	3.78
+Uridine 5'-diphosphate	11.78
+Uridine 5'-monophosphate	10.47
+Uridine diphosphategalactose	11.56
+Uridine triphosphate	12.71
+Xanthurenic acid	4.82
+METABOLITES_END
+#END
