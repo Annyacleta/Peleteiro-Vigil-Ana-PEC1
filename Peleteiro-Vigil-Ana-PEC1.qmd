@@ -88,6 +88,10 @@ objetivos específicos:
 
 1-2 páginas
 
+## Archivos derivados de esta PEC
+
+En el repositorio GitHub, indicado en las referencias...
+
 ## Origen y naturaleza de los datos
 
 El dataset empleado para este ejercicio ha sido extraído del repositorio del Metabolomics Workbench (https://www.metabolomicsworkbench.org/).
