@@ -185,6 +185,3 @@ metadata(se) <- metadata
 #### EXPORTACIÓN
 # Guardo objeto SummarizeExperiment en formato binario .Rda
 save(se, file = "SummarizedExperiment_metabolomics.Rda")
-
-
-########## Análisis exploratorio ############

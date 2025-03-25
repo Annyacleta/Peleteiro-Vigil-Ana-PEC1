@@ -25,62 +25,56 @@ knit:
       width: 75
 ---
 
-# Abstract
-**150 palabras**
+# Abstract **150 palabras**
 
-Los datos seleccionados para esta PEC provienen del análisis por LC-MS de muestras fecales de ratones con cáncer colorectal que recibieron un trasplante de microbiota de ratones sometidos a una dieta cetogénica o a una dieta estándar. tras un análisis exploratorio con XXXXXXX, comparé el metaboloma fecal de los dos grupos de ratones trasplantados para detectar diferencias en su composición, como señalan los autores del estudio. Encontré que....
-
-HABLAR DEL PROCESO Y PRINCIPALES RESULTADOS ANALISIS EXPLORATORIO
-OJO mi dataset quizás fue solo para caracterizar metabolómicamente los ratones GF trasplantados
+El experimento seleccionado se planteó para investigar el efecto de la microbiota intestinal en el perfil metabolómico fecal de ratones con cáncer colorrectal. Se analizaron 175 metabolitos mediante LC-MS en 16 muestras fecales de ratones trasplantados con microbiota cecal de donantes alimentados con dieta cetogénica (KC) o estándar (SC). El análisis exploratorio del dataset transformado a objeto `SummarizedExperiment` en RStudio reveló diferencias notables entre los grupos. Específicamente, [mencionar 1-2 metabolitos/tendencias clave, p.ej., "los niveles de X fueron significativamente mayores en el grupo KC" o "se observó una tendencia a la disminución de Y en el grupo SC"]. Estos resultados preliminares sugieren que la modulación dietética de la microbiota influye en el metaboloma en el contexto del cáncer colorrectal.
 
 
 # Objetivos
-**Media página**
 
-**Objetivo global**: Comparar los metabolitos en heces de los ratones trasplantados con "microbiota estándar" (SC) y aquellos con "microbiota cetogénica" (KC) para detectar diferencias en el perfil metabolómico.
+**Objetivo global**: Identificar las diferencias en el perfil metabolómico fecal de ratones con cáncer colorrectal trasplantados con microbiota cecal proveniente de donantes alimentados con dieta cetogénica (KC) frente a dieta estándar (SC).
 
 **Objetivos específicos**:
 
-1. Crear un objeto de clase `SummarizedExperiment` que contenga los datos y los metadatos del dataset seleccionado.
+1. Construir un objeto `SummarizedExperiment` integrando matriz de intensidades, metadatos de metabolitos (nombre, tiempo de retención) y metadatos de muestras (condición experimental).
 
-2. Realizar un análisis de datos exploratorio para !!describir-> dimensiones, números de grupos, número de muestras, nombre de los grupos, número de metabolitos, número de medidas (formato tabla). Histogramas? barplot con la cantidad de cada metabolito en los ratones, diferenciando por colores según grupo. Visualización/agrupación multivariante: Mostrar PC1 y PC2 para agrupar muestras, dendrograma para ver si se da un agrupamiento jerárquico de las muestras. volcano plot??
-
+2. Realizar un análisis descriptivo básico del objeto `SummarizedExperiment` para extraer conclusiones biológicas preliminares a partir de la exploración de los datos.
 
 # Métodos
-**1-2 páginas**
 
 ## Archivos derivados de esta PEC
 
 En el repositorio de GitHub$^{1}$, se pueden encontrar los diferentes archivos solicitados para la evaluación de este trabajo:
 
-- Informe: Peleteiro-Vigil-Ana-PEC1.qmd
+TABLAAAAAAA!!!!!
 
-- Objeto `SummarizedExperiment`: SummarizedExperiment_metabolomics.Rda
+- **Informe**: Peleteiro-Vigil-Ana-PEC1.qmd
 
-- Código R comentado: 0_CreacionSumExp_code.R, 1_AnalisisExp_code.R
+- **Objeto `SummarizedExperiment`**: SummarizedExperiment_metabolomics.Rda
 
-- Datos: ST003680_AN006041_metadata_data.txt
+- **Código R comentado**: 0_CreacionSumExp_code.R, 1_AnalisisExp_code.R
 
-- Metadatos: Metadatos.md
+- **Datos**: ST003680_AN006041_metadata_data.txt
 
+- **Metadatos**: Metadatos.md
 
 ## Origen y naturaleza de los datos
 
-El dataset empleado para este ejercicio ha sido extraído del repositorio del Metabolomics Workbench (https://www.metabolomicsworkbench.org/). A continuación, muestro la información más básica que identifica el experimento escogido:
+El dataset empleado para este ejercicio ha sido extraído del repositorio del Metabolomics Workbench (<https://www.metabolomicsworkbench.org/>). A continuación, muestro la información más básica que identifica el experimento escogido:
 
-- ID del proyecto: PR002283 ("Ketogenic diet suppresses colorectal cancer through the gut microbiome long chain fatty acid stearate")
+- Proyecto: *Ketogenic diet suppresses colorectal cancer through the gut microbiome long chain fatty acid stearate* (PR002283)
 
 - Fecha de publicación: 20-01-2025
 
-- ID del estudio: ST003680 ("Untargeted LCMS data from Cecal Microbiota Transplant (CMT) experiment")
+- Estudio: *Untargeted LCMS data from Cecal Microbiota Transplant (CMT) experiment* (ST003680)
 
 He seleccionado este reciente estudio por la robustez del diseño experimental, la novedad y su impacto en el conocimiento de los efectos de la microbiota sobre la fisiopatología del cáncer, un campo en el he tenido experiencia. Además, a pesar de no haber trabajado con datos de metabólomica previamente, el dataset me ha parecido relativamente fácil de interpretar y con la información suficiente para desarrollar esta actividad.
 
-El dataset con el que he trabajado procede de un experimento con ratones libres de gérmenes, que recibieron contenido cecal (del ciego, en el intestino grueso) de ratones alimentados con una dieta cetogénica (KC) o con una dieta estándar (SC). Después, estos ratones fueron sometidos al tratamiento con AOM/DSS, inductor de carcinogénesis y colitis, según lo descrito en Tsenkova et al. (2025)$^{2}$ (Figura 1).
+El dataset con el que he trabajado procede de un experimento con ratones libres de gérmenes, que recibieron contenido cecal (del ciego, en el intestino grueso) de ratones alimentados con una dieta cetogénica (KC) o con una dieta estándar (SC). Después, estos ratones fueron sometidos al tratamiento con AOM/DSS, inductor de carcinogénesis y colitis, según lo descrito en Tsenkova *et al.* (2025)$^{2}$ (Figura 1).
 
-![Representación esquemática del montaje experimental de transferencia microbiana cecal en la instalación *germ-free* (Creado en BioRender. Rodriguez, F. (2024) BioRender.com/w69g496).](Figura_1.png){#fig-id width=100% fig-align="center"}$^{2}$
+![Representación esquemática del montaje experimental de transferencia microbiana cecal en la instalación *germ-free* (Creado en BioRender. Rodriguez, F. (2024) BioRender.com/w69g496)$^{2}$.](Figura_1.png){#fig-id width=100% fig-align="center"}
 
-Las muestras fecales de los ratones se analizaron mediante una estrategia de LC-MS para caracterizar el metaboloma fecal de los diferentes grupos experimentales. Los metabolitos se extrajeron de las muestras fecales de ratón y las muestras resultantes se utilizaron para un análisis de metabolómica no dirigida por LC-MS, utilizando un sistema Vanquish UHPLC acoplado a un espectrómetro de masas Q Exactive HF.
+Las muestras fecales de los ratones se analizaron mediante una estrategia de LC-MS para caracterizar el metaboloma fecal de los diferentes grupos experimentales. Los metabolitos se extrajeron de las muestras fecales de ratón y las muestras resultantes se utilizaron para un análisis de metabolómica no dirigida por LC-MS.
 
 
 ## Herramientas estadísticas y bioinformáticas
@@ -88,36 +82,26 @@ Las muestras fecales de los ratones se analizaron mediante una estrategia de LC-
 Para el desarrollo de esta actividad, se empleó el lenguaje de programación R versión 4.4.3 (2025-02-28 ucrt) junto con el siguiente software:
 
 - **RStudio** 2024.12.1+563 "Kousa Dogwood" Release (2025-02-02) for windows
-Mozilla/5.0 (Windows NT 10.0; Win64; x64)
 
 - **Paquetes**: RMarkdown 2.29, BiocManager 1.30.25, SummarizedExperiment 1.34.0, tidyverse 2.0.0
 
-NOTA: Siguiendo las recomendaciones del repositorio Metabolomics Workbench, inicialmente opté por descargar el archivo comprimido con los datos crudos de todas las muestras (12 GB) en formato .mzML mediante FileZilla, un cliente FTP gratuito. Después, hice un preprocesado con MSconvertGUI $^{3}$ para obtener una tabla de intensidades. Este software libre permite reducir notablemente el tamaño de los archivos (en este caso, pasaron de ocupar 16 GB a 6 GB). Sin embargo, mi ordenador no pudo procesarlos en RStudio y, finalmente, descargué los datos procesados y metadatos en formato .txt.
-
+NOTA: Siguiendo las recomendaciones del repositorio Metabolomics Workbench, inicialmente opté por descargar el archivo comprimido con los datos crudos de todas las muestras (12 GB) en formato .mzML mediante FileZilla, un cliente FTP gratuito. Después, hice un preprocesado con MSconvertGUI$^{3}$ para obtener una tabla de intensidades. Este software libre permite reducir notablemente el tamaño de los archivos (en este caso, pasaron de ocupar 16 GB a 6 GB). Sin embargo, mi ordenador no pudo procesarlos en RStudio y, finalmente, descargué los datos procesados y metadatos en formato .txt.
 
 ## Procedimiento del análisis
 
-- **Preprocesado**. No fue necesario, ya que los datos que utilicé no fueron crudos. En el artículo original$^{ref}$, los autores indican que procesaron los datos brutos con TraceFinder (versión 5.1.203.0) para la identificación y anotación de picos. 
+El preprocesado no fue necesario, ya que los datos que utilicé no fueron crudos. En el artículo original$^{2}$, los autores indican que procesaron los datos brutos con TraceFinder (versión 5.1.203.0) para la identificación y anotación de picos. 
 
-
-- **Análisis de datos exploratorio**.
-
----> descriptivo, ver agrupaciones según metabolitos, clustering; volcano plot? 
-
+A partir del archivo `ST003680_AN006041_metadata_data.txt`, generé un objeto de la clase `SummarizedExperiment`, incluyendo datos y metadatos del conjunto seleccionado. Después, inspeccioné este nuevo objeto para recoger sus características y desarrollar el análisis exploratorio (univariante y multivariante) en R.
 
 # Resultados
-**4-5 páginas**
-**código, análisis, resultados con tablas y figuras, y explicaciones**
 
 ## Creación de un objeto de la clase `SummarizedExperiment`
 
-El archivo .txt descargado de Metabolomics Workbench me permitió proceder con los objetivos de esta PEC y generar un objeto de la clase `SummarizedExperiment`. La clase `SummarizedExperiment` representa una evolución significativa respecto a `ExpressionSet`, diseñada para adaptarse a las necesidades de los datos ómicos modernos. Mientras `ExpressionSet` se limitaba a una única matriz de datos, `SummarizedExperiment` permite almacenar múltiples matrices (`assays`), ofreciendo mayor flexibilidad para diversos tipos de experimentos ómicos. Una ventaja clave de `SummarizedExperiment` es su capacidad para coordinar eficientemente los metadatos y los datos observados durante las operaciones de subconjunto, reduciendo el riesgo de errores en el análisis. Además, su estructura más flexible en la información de filas, que puede incluir tanto objetos `GRanges` como `DataFrames` arbitrarios, la hace ideal para experimentos de secuenciación como RNA-Seq y ChIP-Seq, convirtiéndola en la opción recomendada para el manejo de datos ómicos complejos en el ecosistema de Bioconductor.$^{4}$
+El archivo .txt descargado de Metabolomics Workbench me permitió proceder con los objetivos de esta PEC y generar un objeto de la clase `SummarizedExperiment`. La clase `SummarizedExperiment` representa una evolución significativa respecto a `ExpressionSet`, diseñada para adaptarse a las necesidades de los datos ómicos modernos. Mientras `ExpressionSet` se limitaba a una única matriz de datos, `SummarizedExperiment` permite almacenar múltiples matrices (`assays`), ofreciendo mayor flexibilidad para diversos tipos de experimentos ómicos. Una ventaja clave de `SummarizedExperiment` es su capacidad para coordinar eficientemente los metadatos y los datos observados durante las operaciones de subconjunto, reduciendo el riesgo de errores en el análisis. Además, su estructura más flexible en la información de filas, que puede incluir tanto objetos `GRanges` como `DataFrames` arbitrarios, la hace ideal para experimentos de secuenciación como RNA-Seq y ChIP-Seq, convirtiéndola en la opción recomendada para el manejo de datos ómicos complejos en el ecosistema de Bioconductor$^{4}$.
 
-En el chunk de código que muestro a continuación, creé un objeto de clase 
-`SummarizedExperiment` a partir de un archivo de los datos de metabolómica *untargeted* seleccionados. Primero leí el archivo completo como texto para localizar, mediante etiquetas (MS_METABOLITE_DATA_START/END), la sección que contiene la matriz de expresión, en formato metabolitos × muestras. Extraje esa tabla, convertí los datos a formato numérico y la traspuse para que quedara en el formato adecuado para `SummarizedExperiment`: muestras en filas y metabolitos en columnas. A continuación, construí `colData` con los metadatos de las muestras fecales, asignando a cada una su condición experimental (contenido cecal de ratones donantes con dieta cetogénica o con dieta estándar). Después, extraje `rowData` desde otra sección del archivo delimitada por METABOLITES_START/END, que contenía los nombres de los metabolitos y sus tiempos de retención. Finalmente, ensamblé el objeto `SummarizedExperiment`, incorporando tanto la matriz de intensidades como los metadatos, convirtiendo `colData` y `rowData` en objetos `DataFrame()` para asegurar compatibilidad con la estructura de Bioconductor.
+En el chunk de código inferior, creé un objeto de clase `SummarizedExperiment` a partir de un archivo de los datos de metabolómica *untargeted* seleccionados. Primero leí el archivo completo como texto para localizar, mediante etiquetas (`MS_METABOLITE_DATA_START/ END`), la sección que contiene la matriz de expresión, en formato metabolitos × muestras. Extraje esa tabla, convertí los datos a formato numérico y la traspuse para que quedara en el formato adecuado para `SummarizedExperiment`: muestras en filas y metabolitos en columnas. A continuación, construí `colData` con los metadatos de las muestras fecales, asignando a cada una su condición experimental (contenido cecal de ratones donantes con dieta cetogénica o con dieta estándar). Después, extraje `rowData` desde otra sección del archivo delimitada por `METABOLITES_START/ END`, que contenía los nombres de los metabolitos y sus tiempos de retención. Finalmente, ensamblé el objeto `SummarizedExperiment`, incorporando tanto la matriz de intensidades como los metadatos, convirtiendo `colData` y `rowData` en objetos `DataFrame()` para asegurar compatibilidad con la estructura de Bioconductor.
 
-El código completo (con metadatos) se puede consultar en el archivo 
-`0_CreacionSumExp_code.R`, disponible en el repositorio de GitHub de esta PEC$^{1}$.
+El código completo (con metadatos) se puede consultar en el archivo 0_CreacionSumExp_code.R, disponible en el repositorio de GitHub de esta PEC$^{1}$.
 
 ```{r}
 #| message: false
@@ -148,7 +132,7 @@ expr_raw <- read.delim(file,
                        nrows = 175, 
                        check.names = FALSE)
 
-# 4. Con header para futuro procesado
+# Con header para futuro procesado
 expr_raw_HEADER <- read.delim(file, 
                               skip = start_data - 2, nrows = 177, 
                               check.names = FALSE) 
@@ -162,7 +146,7 @@ expr_data <- apply(expr_raw[, -1], 2, as.numeric) %>%
   t() %>%
   as.data.frame()
 
-# 5. COLDATA -- Metadatos de muestras:  nombres y condiciones
+# 4. COLDATA -- Metadatos de muestras:  nombres y condiciones
 # (irán en columnas en objeto se)
 
 # Nombres de muestras sin término "Samples"
@@ -176,7 +160,7 @@ col_data <- data.frame(
   row.names = rownames(expr_data),
   stringsAsFactors = FALSE)
 
-# 6. ROWDATA -- metadatos de metabolitos: nombres y tiempos de retención
+# 5. ROWDATA -- metadatos de metabolitos: nombres y tiempos de retención
 # (irán en filas en objeto se)
 
 metabolite_meta <- read.delim(file,
@@ -187,8 +171,8 @@ metabolite_meta <- read.delim(file,
 # Asigno nombres de columnas directamente
 colnames(metabolite_meta) <- c("metabolite_name", "retention_time")
 
-# 7. Creo la clase SummarizedExperiment con sus atributos;
-# conversión a DataFrame() permite estructuras más complejas
+# 6. Creo la clase SummarizedExperiment con sus atributos;
+# la conversión a DataFrame() permite estructuras más complejas
 
 se <- SummarizedExperiment(
   assays = list(intensity = t(expr_data)),  #datos
@@ -200,17 +184,56 @@ rownames(se) <- as.character(metabolite_meta[[1]])
 ```
 
 
-## Análisis exploratorio
+El código de los siguientes apartados se pueden consultar en el archivo 1_AnalisisExp_code.R, disponible en el repositorio de GitHub de esta PEC$^{1}$. A continuación presentaré un breve análisis descriptivos de los datos.
+
+## Inspección preliminar del dataset
+
+El conjunto de datos tiene 175 metabolitos (filas) y 16 muestras (columnas), divididas en dos grupor según la condición experimental (KC, SC). En la Tabla 1 se muestran las principales características extraídas del objeto `SummarizedExperiment`.
+
+| Característica | Descripción |
+|----------------|-------------|
+| Dimensiones | 175 x 16 |
+| Metabolitos | 175 |
+| Muestras | 16 |
+| Metadatos de metabolitos | Nombre del metabolito, Tiempo de retención |
+| Metadatos de muestras | Condiciones experimentales (KC, SC) |
+| Valores en la matriz | Áreas normalizadas de metabolitos |
+| Valores totales | 2800 |
+| Valores faltantes (NA) | 1402 |
+
+A continuación, se presentan las primeras filas y columnas del dataset en formato tabla:
 
 ```{r}
-#Análisis exploratorio
+#| echo: false
+#| message: false
+#| warning: false
+# Extraigo las medidas y selecciono algunos datos
+intensidades <- assay(se)
+intensidades_2 <- intensidades[2:4, 6:11]
+
+# Conviero a dataframe y hago la tabla
+intensidades_df <- as.data.frame(intensidades_2)
+kableExtra::kable(intensidades_df, "pipe")
+```
+
+## Análisis de datos exploratorio 
+
+### Análisis univariante
+
+barplot con la cantidad de cada metabolito en los ratones, diferenciando por colores según grupo. 
+
+```{r}
+# Media de cada metabolito por condiciones SC o KC
 
 ```
 
 
+### Análisis multivariante
+
+Visualización/agrupación multivariante: Mostrar PC1 y PC2 para agrupar muestras, dendrograma para ver si se da un agrupamiento jerárquico de las muestras.
+
 
 # Discusión
-
 
 Reflexiones sobre limitaciones del estudio y sobre el trabajo realizado, en el contexto del problema biológico.
 (Breve info del paper, tener en cuenta las bacterias que hay presentes en cada tipo de microbiota. Relación con efecto antitumoral-> esta parte no la he analizado, así que es una limitación de mi trabajo! se trata de un análisis parcial). Quizás con alguna figura del paper se puedan hacer comparaciones, pero no parece -> OJO mi dataset quizás fue solo para caracterizar metabolómicamente los ratones GF trasplantados
@@ -220,16 +243,15 @@ Reflexiones sobre limitaciones del estudio y sobre el trabajo realizado, en el c
 
 # Conclusiones
 
-
 Media página: utilidad e interés de `SummarizedExperiment`, versatilidad que permite al incorporar más datos de las variables y metadatos del estudio
 
 
 # Referencias
 
-1. Peleteiro-Vigil, A. Peleteiro-Vigil-Ana-PEC1 [Internet]. GitHub; 2025. Disponible en: https://github.com/Annyacleta/Peleteiro-Vigil-Ana-PEC1 **Repositorio PEC1**
+1. Peleteiro-Vigil, A. Peleteiro-Vigil-Ana-PEC1 [Internet]. GitHub; 2025. Disponible en: <https://github.com/Annyacleta/Peleteiro-Vigil-Ana-PEC1>
 
-2. Tsenkova, M., Brauer, M., Pozdeev, V.I. et al. Ketogenic diet suppresses colorectal cancer through the gut microbiome long chain fatty acid stearate. Nat Commun 16, 1792 (2025). https://doi.org/10.1038/s41467-025-56678-0
+2. Tsenkova, M., Brauer, M., Pozdeev, V.I. et al. Ketogenic diet suppresses colorectal cancer through the gut microbiome long chain fatty acid stearate. Nat Commun 16, 1792 (2025). Disponible en: <https://doi.org/10.1038/s41467-025-56678-0>
 
-3. Chambers, M., Maclean, B., Burke, R. et al. A cross-platform toolkit for mass spectrometry and proteomics. Nat Biotechnol 30, 918–920 (2012). https://doi.org/10.1038/nbt.2377
+3. Chambers, M., Maclean, B., Burke, R. et al. A cross-platform toolkit for mass spectrometry and proteomics. Nat Biotechnol 30, 918–920 (2012). Disponible en: <https://doi.org/10.1038/nbt.2377>
 
-4. Morgan M, Obenchain V, Hester J, Pagès H. SummarizedExperiment for Coordinating Experimental Assays, Samples, and Regions of Interest [Internet]. Bioconductor; 2023 [consultado 2025 mar 23]. Disponible en: https://bioconductor.org/packages/release/bioc/vignettes/SummarizedExperiment/inst/doc/SummarizedExperiment.html
+4. Morgan M, Obenchain V, Hester J, Pagès H. SummarizedExperiment for Coordinating Experimental Assays, Samples, and Regions of Interest [Internet]. Bioconductor; 2023 [consultado 2025 mar 23]. Disponible en: <https://bioconductor.org/packages/release/bioc/vignettes/SummarizedExperiment/inst/doc/SummarizedExperiment.html>

@@ -15,12 +15,42 @@ library(SummarizedExperiment)
 library(tidyverse)
 
 
-# Análisis exploratorio ---------------------------------------------------
+# Inspección del dataset --------------------------------------------------
 
-
-# Cargar objeto SE con dataset
-
+# Cargo objeto SE con dataset
 load("SummarizedExperiment_metabolomics.Rda")
 
-# Inspección del objeto
+# Inspecciono el objeto
 se
+
+# Compruebo las dimensiones
+dim(se)
+
+# Exploro 3 primeras filas (metabolitos) para todas las muestras
+assay(se)[1:3, ]
+
+# ROWDATA -metadatos de metabolitos (6 primeros)
+head(rowData(se))
+
+# COLDATA -metadatos de muestras (6 primeros)
+head(colData(se))
+
+# Matriz con datos de intensidades de picos
+intensidades <- assay(se)
+
+# Número de medidas totales
+prod(dim(se))
+
+# Número de valores faltantes
+sum(is.na(intensidades))
+
+
+# Análisis exploratorio de los datos --------------------------------------
+
+# 1. Análisis univariante
+
+# Media de intensidad de metabolito por grupo
+
+
+# 2. Análisis multivariante
+
