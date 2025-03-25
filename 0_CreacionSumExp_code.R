@@ -1,43 +1,70 @@
-#### DATOS
-# Creación de estructura de datos básica
+# Preparación -------------------------------------------------------------
+
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
+  install.packages("BiocManager")}
+if (!require(SummarizedExperiment)) {
+  BiocManager::install("SummarizedExperiment")}
+
+# Cargo librerías ---------------------------------------------------------
 
 library(SummarizedExperiment)
 library(tidyverse)
 
-# Leo archivo completo como texto
+# Creación de objeto SummarizedExperiment ---------------------------------
+
+# 1. Leo archivo completo como texto
 file <- "ST003680_AN006041_metadata_data.txt"
 raw_lines <- readLines(file)
 
-# Localizo las secciones de datos, según etiquetas y leyendo las líneas correspondientes
-start_data <- grep("MS_METABOLITE_DATA_START", raw_lines) + 2 #inicio datos MS metabolitos
-end_data   <- grep("MS_METABOLITE_DATA_END", raw_lines) - 1 #fin datos MS metabolitos
-start_meta_rt <- grep("METABOLITES_START", raw_lines) + 1 #inicio metadatos metabolitos
-end_meta_rt   <- grep("METABOLITES_END", raw_lines) - 1 #fin metadatos metabolitos
+# 2. Localizo las secciones de datos,
+# según etiquetas y leyendo las líneas correspondientes
 
-# Leo la matriz de expresión (está en formato metabolitos × muestras)
-expr_raw <- read.delim(file, skip = start_data - 1, nrows = 175, check.names = FALSE) # 175 metabolitos = filas
-expr_raw_HEADER <- read.delim(file, skip = start_data - 2, nrows = 177, check.names = FALSE) # Con header para futuro procesado
+#inicio datos MS metabolitos
+start_data <- grep("MS_METABOLITE_DATA_START", raw_lines) + 2
+#fin datos MS metabolitos
+end_data   <- grep("MS_METABOLITE_DATA_END", raw_lines) - 1
+#inicio metadatos metabolitos
+start_meta_rt <- grep("METABOLITES_START", raw_lines) + 1
+#fin metadatos metabolitos
+end_meta_rt   <- grep("METABOLITES_END", raw_lines) - 1
 
-# Convierto datos a numéricos y trasponer (metabolitos x muestras -> muestras × metabolitos, xq es el formato que acepta SumExp)
-# Luego traspondré otra vez, así que algo está mal planteado!!
+# 3. Leo la matriz de expresión (está en formato metabolitos × muestras)
+expr_raw <- read.delim(file, 
+                       skip = start_data - 1, 
+                       nrows = 175, 
+                       check.names = FALSE)
+
+# Con header para futuro procesado
+expr_raw_HEADER <- read.delim(file, 
+                              skip = start_data - 2, nrows = 177, 
+                              check.names = FALSE) 
+
+# Convierto datos a numéricos y traspongo
+# (metabolitos x muestras -> muestras × metabolitos,
+# formato que acepta SumExp)
+# Luego traspondré otra vez
+
 expr_data <- apply(expr_raw[, -1], 2, as.numeric) %>% 
   t() %>%
   as.data.frame()
 
+# 4. COLDATA -- Metadatos de muestras:  nombres y condiciones
+# (irán en columnas en objeto se)
 
-# COLDATA -- Metadatos de muestras:  nombres y condiciones (irán en columnas en objeto se)
-rownames(expr_data) <- colnames(expr_raw_HEADER)[-1]  # Nombres de muestras sin término "Samples"
-condition <- c(rep("KC", 8), rep("SC", 8)) #condiciones experimentales: keto y estándar
+# Nombres de muestras sin término "Samples"
+rownames(expr_data) <- colnames(expr_raw_HEADER)[-1]
+
+#condiciones experimentales: keto y estándar
+condition <- c(rep("KC", 8), rep("SC", 8)) 
 
 col_data <- data.frame(
   condition = condition,
   row.names = rownames(expr_data),
-  stringsAsFactors = FALSE
-)
+  stringsAsFactors = FALSE)
 
+# 5. ROWDATA -- metadatos de metabolitos: nombres y tiempos de retención
+# (irán en filas en objeto se)
 
-# ROWDATA -- metadatos de metabolitos: nombres y tiempos de retención (irán en filas en objeto se)
-#colnames(expr_data) <-   expr_raw[[1]] # Nombres de metabolitos sin término "Factor" (cambio método)
 metabolite_meta <- read.delim(file,
                               skip = start_meta_rt - 1,
                               nrows = end_meta_rt - start_meta_rt,
@@ -46,16 +73,20 @@ metabolite_meta <- read.delim(file,
 # Asigno nombres de columnas directamente
 colnames(metabolite_meta) <- c("metabolite_name", "retention_time")
 
+# 6. Creo la clase SummarizedExperiment con sus atributos;
+# conversión a DataFrame() permite estructuras más complejas
 
-# Creo la clase SummarizedExperiment con sus atributos; conversión a DataFrame() permite estructuras más complejas
 se <- SummarizedExperiment(
-  assays = list(intensity = t(expr_data)),  # Matriz numérica con todo el dataset
+  assays = list(intensity = t(expr_data)),  #datos
   rowData = DataFrame(metabolite_meta),   # Metabolitos en filas
-  colData = DataFrame(col_data)    # Muestras en columnas
-)
+  colData = DataFrame(col_data) )   # Muestras en columnas
 
+# Filas con los nombres de los metabolitos
+rownames(se) <- as.character(metabolite_meta[[1]])
+  
 #### METADATOS
-# Creación de lista de listas con metadatos relativos al proyecto y condiciones del experimento.
+# 1. Creación de lista de listas con metadatos relativos al proyecto
+# y condiciones del experimento.
 
 metadata <- list(
   source = "METABOLOMICS WORKBENCH",
@@ -148,10 +179,12 @@ metadata <- list(
   )
 )
 
-#Almaceno como metadatos del objeto SummarizedExperiment (se)
+# 2. Almaceno como metadatos del objeto SummarizedExperiment (se)
 metadata(se) <- metadata
 
 #### EXPORTACIÓN
 # Guardo objeto SummarizeExperiment en formato binario .Rda
 save(se, file = "SummarizedExperiment_metabolomics.Rda")
 
+
+########## Análisis exploratorio ############
