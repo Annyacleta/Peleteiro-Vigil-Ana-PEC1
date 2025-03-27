@@ -28,7 +28,7 @@ start_meta_rt <- grep("METABOLITES_START", raw_lines) + 1
 #fin metadatos metabolitos
 end_meta_rt   <- grep("METABOLITES_END", raw_lines) - 1
 
-# 3. Leo la matriz de expresión (está en formato metabolitos × muestras)
+# 3. Leo la matriz de expresión (formato metabolitos × muestras)
 expr_raw <- read.delim(file, 
                        skip = start_data - 1, 
                        nrows = 175, 

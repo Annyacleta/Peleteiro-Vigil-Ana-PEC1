@@ -46,17 +46,13 @@ El experimento seleccionado se planteó para investigar el efecto de la microbio
 
 En el repositorio de GitHub$^{1}$, se pueden encontrar los diferentes archivos solicitados para la evaluación de este trabajo:
 
-TABLAAAAAAA!!!!!
-
-- **Informe**: Peleteiro-Vigil-Ana-PEC1.qmd
-
-- **Objeto `SummarizedExperiment`**: SummarizedExperiment_metabolomics.Rda
-
-- **Código R comentado**: 0_CreacionSumExp_code.R, 1_AnalisisExp_code.R
-
-- **Datos**: ST003680_AN006041_metadata_data.txt
-
-- **Metadatos**: Metadatos.md
+| Archivo                        | Nombre                                  |
+|:-------------------------------|:---------------------------------------|
+| Informe                        | Peleteiro-Vigil-Ana-PEC1.qmd           |
+| Objeto `SummarizedExperiment`  | SummarizedExperiment_metabolomics.Rda  |
+| Código R comentado             | 0_CreacionSumExp_code.R, 1_AnalisisExp_code.R |
+| Datos                          | ST003680_AN006041_metadata_data.txt    |
+| Metadatos                      | Metadatos.md                           |
 
 ## Origen y naturaleza de los datos
 
@@ -220,7 +216,7 @@ kableExtra::kable(intensidades_df, "pipe")
 
 ### Análisis univariante
 
-barplot con la cantidad de cada metabolito en los ratones, diferenciando por colores según grupo. 
+boxplot con la cantidad de cada metabolito en los ratones, diferenciando por colores según grupo. 
 
 ```{r}
 # Media de cada metabolito por condiciones SC o KC
