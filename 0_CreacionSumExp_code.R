@@ -12,6 +12,8 @@ library(tidyverse)
 
 # Creación de objeto SummarizedExperiment ---------------------------------
 
+#### DATOS
+
 # 1. Leo archivo completo como texto
 file <- "ST003680_AN006041_metadata_data.txt"
 raw_lines <- readLines(file)
