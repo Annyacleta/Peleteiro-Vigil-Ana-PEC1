@@ -1,9 +1,12 @@
 # Preparación -------------------------------------------------------------
-if (!require(FactoMineR)) install.packages("FactoMineR", dep=TRUE)
-if (!require(factoextra)) install.packages("factoextra", dep=TRUE)
-if (!require(tibble)) install.packages("tibble", dep=TRUE)
+if (!require(FactoMineR)) install.packages("FactoMineR", dep=TRUE) #PCA
+if (!require(factoextra)) install.packages("factoextra", dep=TRUE) #PCA
+if (!require(tibble)) install.packages("tibble", dep=TRUE) #Dataframes
+if (!require(tidyverse)) install.packages("tidyverse", dep=TRUE)
 if (!require(tidyr)) install.packages("tidyr", dep=TRUE)
-if (!require(patchwork)) install.packages("patchwork", dep=TRUE)
+if (!require(SummarizedExperiment)) install.packages("SummarizedExperiment", dep=TRUE)
+if (!require(patchwork)) install.packages("patchwork", dep=TRUE) #Apilar figuras
+if (!require(ggdendro)) install.packages("ggdendro", dep=TRUE)
 
 if (!require(ade4)) install.packages("ade4", dep=TRUE)
 if (!require(BiocManager))
@@ -21,6 +24,7 @@ library(tibble)
 library(tidyr)
 library(ggplot2)
 library(patchwork)
+library(ggdendro)
 
 # Inspección del dataset --------------------------------------------------
 
@@ -65,7 +69,7 @@ kc_means <- rowMeans(intensidades[, kc_cols, drop = FALSE], na.rm = TRUE)
 sc_means <- rowMeans(intensidades[, sc_cols, drop = FALSE], na.rm = TRUE)
 
 #SD
-kc_sd <- apply(intensidades[, sc_cols, drop = FALSE], 1, sd, na.rm = TRUE)
+kc_sd <- apply(intensidades[, kc_cols, drop = FALSE], 1, sd, na.rm = TRUE)
 sc_sd <- apply(intensidades[, sc_cols, drop = FALSE], 1, sd, na.rm = TRUE)
 
 
@@ -154,7 +158,7 @@ df_boxplot_2 <- intesity_df %>% filter(metabolite %in% metabs_2)
 box1 <- ggplot(df_boxplot_1, aes(x = metabolite, y = intensity, fill = condition)) +
   geom_boxplot(outlier.shape = NA) +
     labs(x = "",
-       y = "Abundancia",
+       y = "Abundancia normalizada (u.a.)",
        fill = "Condición") +
   theme_classic() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
@@ -164,7 +168,7 @@ box1 <- ggplot(df_boxplot_1, aes(x = metabolite, y = intensity, fill = condition
 box2 <- ggplot(df_boxplot_2, aes(x = metabolite, y = intensity, fill = condition)) +
   geom_boxplot(outlier.shape = NA) +
   labs(x = "",
-       y = "Abundandica",
+       y = "Abundancia normalizada (u.a.)",
        fill = "Condición") +
   theme_classic() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
@@ -175,7 +179,89 @@ boxplot_final <- box1 + box2 + plot_layout(ncol = 1, heights = c(1,2))
 # Guardo el gráfico
 ggsave("boxplot_metabolites.png", plot = boxplot_final, width = 8, height = 12)
 
-#View(intesity_df) #Quitar L-lactic acid, se sale demasiado!!!
+#View(intesity_df) #L-lactic acid se sale!!
+
+# Media y SD ácido L-láctico grupo KC y SC
+lactic <- "L-Lactic acid"
+
+kc_means[lactic]
+kc_sd[lactic]
+
+sc_means[lactic]
+sc_sd[lactic]
+
 
 # 2. Análisis multivariante
 
+## 2.1. PCA
+
+# Transpongo para que filas = muestras, columnas = metabolitos
+pca_entrada <- t(intensidades)
+
+# Elimino metabolitos con NA en alguna muestra
+pca_entrada <- pca_entrada[, colSums(is.na(pca_entrada)) == 0]
+
+# Escalo y centro las variables (recomendable en PCA untargeted)
+pca_entrada <- scale(pca_entrada)
+
+# Extraigo condición experimental
+condition <- colData(se)$condition
+
+# Realizo el PCA
+pca_result <- prcomp(pca_entrada, center = TRUE, scale. = TRUE)
+
+# Visualización estilo `fviz_pca_ind`
+pca_fig <- fviz_pca_ind(
+  pca_result,
+  geom.ind = "point",
+  col.ind = condition,     # Color por grupo
+  palette = "jco",         # Paleta de colores
+  addEllipses = TRUE,    
+  legend.title = "Grupo",  
+  repel = TRUE             # Evito solapamiento de etiquetas
+)
+
+# Guardo figura
+ggsave("pca_metabolomics.png", plot = pca_fig, width = 6, height = 5)
+
+## 2.2. DENDROGRAMA: AGRUPACIÓN JERÁRQUICA DE LAS MUESTRAS
+# Puedo partir de los datos de intensidades ya transpuestos, sin NA, 
+# centrados y escalados que empleé para PCA (pca_entrada)
+
+# Calculo distancias euclídeas
+dist_matrix <- dist(pca_entrada, method = "euclidean")
+
+# Clustering jerárquico con enlace promedio
+hc <- hclust(dist_matrix, method = "average")
+
+# Figura
+dendro <- ggdendrogram(hc, rotate = FALSE, theme_dendro = TRUE)
+
+# Guardo figura
+ggsave("dendro_metabolomics.png", plot = dendro, width = 6, height = 5)
+
+## 2.3. K-MEANS: AGRUPACIÓN JERÁRQUICA DE LOS METABOLITOS (no usado)
+#mejor usar métodos no jerárquicos partitivos como k-means
+#Un inconveniente de la agrupación por k-means es que hace falta escoger el
+#número de clusters (k) antes de realizar la agrupación.
+# Elegir número de clusters (ej. k = 5)
+set.seed(123)
+k <- 5 #tendría que calcularlo
+kmeans_result <- kmeans(pca_entrada, centers = k)
+
+# Añadir etiquetas de cluster
+metabolite_clusters <- data.frame(
+  muestra = rownames(pca_entrada),
+  cluster = factor(kmeans_result$cluster)
+)
+
+library(pheatmap)
+
+pheatmap(
+  pca_entrada,
+  cluster_rows = TRUE,
+  cluster_cols = TRUE,
+  annotation_row = metabolite_clusters,
+  show_rownames = FALSE,
+  main = "Agrupación de metabolitos por k-means (k = 4)"
+)

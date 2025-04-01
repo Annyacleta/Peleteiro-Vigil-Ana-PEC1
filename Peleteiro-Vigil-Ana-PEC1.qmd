@@ -79,7 +79,7 @@ Para el desarrollo de esta actividad, se empleó el lenguaje de programación R 
 
 - **RStudio** 2024.12.1+563 "Kousa Dogwood" Release (2025-02-02) for windows
 
-- **Paquetes**: RMarkdown 2.29, BiocManager 1.30.25, SummarizedExperiment 1.34.0, tidyverse 2.0.0, tibble 3.2.1, ggplot2 3.5.1, patchwork 1.3.0
+- **Paquetes**: RMarkdown 2.29, BiocManager 1.30.25, SummarizedExperiment 1.34.0, tidyverse 2.0.0, tibble 3.2.1, ggplot2 3.5.1, patchwork 1.3.0, factoextra 1.0.7, FactoMineR 2.11, ggdendro 0.2.0
 
 NOTA: Siguiendo las recomendaciones del repositorio Metabolomics Workbench, inicialmente opté por descargar el archivo comprimido con los datos crudos de todas las muestras (12 GB) en formato .mzML mediante FileZilla, un cliente FTP gratuito. Después, hice un preprocesado con MSconvertGUI$^{3}$ para obtener una tabla de intensidades. Este software libre permite reducir notablemente el tamaño de los archivos (en este caso, pasaron de ocupar 16 GB a 6 GB). Sin embargo, mi ordenador no pudo procesarlos en RStudio y, finalmente, descargué los datos procesados y metadatos en formato .txt.
 
@@ -139,20 +139,36 @@ kableExtra::kable(intensidades_df, "pipe")
 
 ### Análisis univariante
 
-En la **figura 2** muestro dos boxplot de la abundancia de cada metabolito en los ratones, diferenciando los grupos experimentales KC y SC por colores. Cada caja representa la distribución de abundacia para un metabolito específico en cada grupo: la línea central indica la mediana, los límites de la caja corresponden al primer y tercer cuartil, y los "bigotes" reflejan la variabilidad fuera de los cuartiles sin considerar los outliers. Para facilitar la visualización, he eliminado los valores no detectados (NA), y dividido y apilado los gráficos verticalmente. Además, he ampliado el eje y de la segunda figura, a escala. El ácido L-láctico aparece truncado por sobrepasar el límite superior fijado.
+En la **figura 2** muestro dos boxplot de la abundancia relativa de cada metabolito en los ratones, diferenciando los grupos experimentales KC y SC por colores. Cada caja representa la distribución de la abundacia relativa para un metabolito específico en cada grupo: la línea central indica la mediana, los límites de la caja corresponden al primer y tercer cuartil, y los "bigotes" reflejan la variabilidad fuera de los cuartiles sin considerar los outliers. Para facilitar la visualización, he eliminado los valores no detectados (NA), y dividido y apilado los gráficos verticalmente. Además, he ampliado el eje y de la segunda figura, a escala. El ácido L-láctico aparece truncado por sobrepasar el límite superior fijado (media ± desviación estándar: 21.42 ± 18.032 u.a. para ratones KC y 34.58 ± 29.524 u.a. para ratones SC).
 
-![Distribución de la abundancia de metabolitos en los grupos experimentales KC y SC, cuantificados por LC-MS. Se han eliminado los valores no detectados (NA). n = 8 ratones para cada grupo experimental.](boxplot_metabolites.png){#fig-id width=100% fig-align="center"}
+![Distribución de la abundancia relativa de metabolitos en los grupos experimentales KC y SC, cuantificados por LC-MS. Se han eliminado los valores no detectados (NA). n = 8 ratones para cada grupo experimental. Intensidades relativas normalizadas (área bajo la curva), expresadas en unidades arbitrarias (u.a.).](boxplot_metabolites.png){#fig-id width=100% fig-align="center"}
 
 
 ### Análisis multivariante
 
-Visualización/agrupación multivariante: Mostrar PC1 y PC2 para agrupar muestras, dendrograma para ver si se da un agrupamiento jerárquico de las muestras.
+En la **figura 3** muestro un análisis de componentes principales (PCA) aplicado a los perfiles metabolómicos, con el objetivo de explorar la agrupación de las muestras en función de la variabilidad global en la abundancia de metabolitos. El PCA revela una tendencia a la separación entre los grupos experimentales, principalmente a lo largo de la primera componente principal (PC1 o Dim1), que explica el 36% de la varianza. El grupo de ratones SC tiende a agruparse a la derecha de PC1, mientras que el grupo KC se concentra más a la izquierda. Aunque los grupos no se separan completamente, se observan patrones distintos de agrupamiento. Esto sugiere diferencias en los perfiles metabolómicos globales entre condiciones, aunque con cierta solapación que indica variabilidad no completamente discriminativa.
+
+![Análisis de componentes principales (PCA) de los perfiles metabolómicos obtenidos por LC-MS en los grupos experimentales KC y SC (n = 8 por grupo). Se representan las muestras individuales en el espacio definido por las dos primeras componentes principales (PC1 y PC2), que explican conjuntamente el 50,8 % de la varianza total (valores indicados en los ejes). Cada punto corresponde a una muestra individual (ratón) y está coloreado según su grupo experimental. Las líneas discontinuas indican el origen de los ejes. El análisis se realizó sobre datos normalizados (área bajo la curva) y escalados, tras eliminar metabolitos con valores faltantes.](pca_metabolomics.png){#fig-id width=100% fig-align="center"}
+
+Para ver si se da un agrupamiento de las muestras según su perfil metabolómico, realicé un dendrograma jerárquico basado en distancias euclídeas y enlace promedio (**figura 4**). Se puede apreciar una agrupación parcial de las muestras según el grupo experimental (KC y SC), sin una separación clara. Esto sugiere, de nuevo, una alta variabilidad intra-grupo o una diferencia metabólica moderada entre condiciones.
+
+![Dendrograma de agrupamiento jerárquico de las muestras basado en perfiles metabolómicos obtenidos por LC-MS. El clustering se realizó a partir de una matriz de intensidades normalizadas (área bajo la curva), utilizando distancia euclídea y el método de enlace promedio (*average linkage*). Cada muestra se representa por su identificador individual, y las alturas del dendrograma reflejan las disimilitudes entre perfiles.](dendro_metabolomics.png){#fig-id width=100% fig-align="center"}
+
+Por último, pruebo a realizar una agrupación de los metabolitos por el método de las k-means. 
+
 
 
 # Discusión
 
 Reflexiones sobre limitaciones del estudio y sobre el trabajo realizado, en el contexto del problema biológico.
 (Breve info del paper, tener en cuenta las bacterias que hay presentes en cada tipo de microbiota. Relación con efecto antitumoral-> esta parte no la he analizado, así que es una limitación de mi trabajo! se trata de un análisis parcial). Quizás con alguna figura del paper se puedan hacer comparaciones, pero no parece -> OJO mi dataset quizás fue solo para caracterizar metabolómicamente los ratones GF trasplantados
+
+solo con el PCA:
+No se puede afirmar significancia estadística de la separación entre grupos.
+No se identifican qué metabolitos son responsables de la separación (eso requiere un biplot o análisis diferencial).
+No se establece causalidad ni dirección del cambio biológico
+
+Más interesane ver microbiota o ampliar perfil metabolómico
 
 1 página
 
