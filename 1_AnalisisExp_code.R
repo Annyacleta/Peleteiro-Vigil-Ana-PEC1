@@ -1,30 +1,19 @@
 # Preparación -------------------------------------------------------------
-if (!require(FactoMineR)) install.packages("FactoMineR", dep=TRUE) #PCA
-if (!require(factoextra)) install.packages("factoextra", dep=TRUE) #PCA
-if (!require(tibble)) install.packages("tibble", dep=TRUE) #Dataframes
-if (!require(tidyverse)) install.packages("tidyverse", dep=TRUE)
-if (!require(tidyr)) install.packages("tidyr", dep=TRUE)
-if (!require(SummarizedExperiment)) install.packages("SummarizedExperiment", dep=TRUE)
-if (!require(patchwork)) install.packages("patchwork", dep=TRUE) #Apilar figuras
+
+if (!require(factoextra)) install.packages("factoextra", dep=TRUE)
 if (!require(ggdendro)) install.packages("ggdendro", dep=TRUE)
-
-if (!require(ade4)) install.packages("ade4", dep=TRUE)
-if (!require(BiocManager))
-  install.packages("BiocManager", dep=TRUE)
-if (!require(made4))
-  BiocManager::install("made4")
-
+if (!require(patchwork)) install.packages("patchwork", dep=TRUE)
+if (!require(SummarizedExperiment)) install.packages("SummarizedExperiment", dep=TRUE)
+if (!require(tidyverse)) install.packages("tidyverse", dep=TRUE)
 
 # Cargo librerías ---------------------------------------------------------
 
-library(SummarizedExperiment)
-library(tidyverse)
-library(dplyr)
-library(tibble)
-library(tidyr)
-library(ggplot2)
-library(patchwork)
-library(ggdendro)
+
+library(factoextra) #PCA
+library(ggdendro) #Dendrograma
+library(patchwork) #Apilar figuras
+library(SummarizedExperiment) #objeto de Bioconductor
+library(tidyverse) #metapaquete para trabajar con datos
 
 # Inspección del dataset --------------------------------------------------
 
@@ -177,7 +166,7 @@ box2 <- ggplot(df_boxplot_2, aes(x = metabolite, y = intensity, fill = condition
 boxplot_final <- box1 + box2 + plot_layout(ncol = 1, heights = c(1,2))
 
 # Guardo el gráfico
-ggsave("boxplot_metabolites.png", plot = boxplot_final, width = 8, height = 12)
+ggsave("boxplot_metabolites.png", plot = boxplot_final, width = 11, height = 12)
 
 #View(intesity_df) #L-lactic acid se sale!!
 
@@ -217,12 +206,12 @@ pca_fig <- fviz_pca_ind(
   col.ind = condition,     # Color por grupo
   palette = "jco",         # Paleta de colores
   addEllipses = TRUE,    
-  legend.title = "Grupo",  
+  legend.title = "Condición",  
   repel = TRUE             # Evito solapamiento de etiquetas
 )
 
 # Guardo figura
-ggsave("pca_metabolomics.png", plot = pca_fig, width = 6, height = 5)
+ggsave("pca_metabolomics.png", plot = pca_fig, width = 7, height = 4)
 
 ## 2.2. DENDROGRAMA: AGRUPACIÓN JERÁRQUICA DE LAS MUESTRAS
 # Puedo partir de los datos de intensidades ya transpuestos, sin NA, 
@@ -238,7 +227,7 @@ hc <- hclust(dist_matrix, method = "average")
 dendro <- ggdendrogram(hc, rotate = FALSE, theme_dendro = TRUE)
 
 # Guardo figura
-ggsave("dendro_metabolomics.png", plot = dendro, width = 6, height = 5)
+ggsave("dendro_metabolomics.png", plot = dendro, width = 8, height = 3)
 
 ## 2.3. K-MEANS: AGRUPACIÓN JERÁRQUICA DE LOS METABOLITOS (no usado)
 #mejor usar métodos no jerárquicos partitivos como k-means

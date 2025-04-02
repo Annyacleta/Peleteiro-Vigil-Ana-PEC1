@@ -25,14 +25,14 @@ knit:
       width: 75
 ---
 
-# Abstract **150 palabras**
+# Abstract
 
-El experimento seleccionado se planteó para investigar el efecto de la microbiota intestinal en el perfil metabolómico fecal de ratones con cáncer colorrectal. Se analizaron 175 metabolitos mediante LC-MS en 16 muestras fecales de ratones trasplantados con microbiota cecal de donantes alimentados con dieta cetogénica (KC) o estándar (SC). El análisis exploratorio del dataset transformado a objeto `SummarizedExperiment` en RStudio reveló diferencias notables entre los grupos. Específicamente, [mencionar 1-2 metabolitos/tendencias clave, p.ej., "los niveles de X fueron significativamente mayores en el grupo KC" o "se observó una tendencia a la disminución de Y en el grupo SC"]. Estos resultados preliminares sugieren que la modulación dietética de la microbiota influye en el metaboloma en el contexto del cáncer colorrectal.
+El experimento seleccionado fue planteado por los investigadores para estudiar el efecto de la microbiota intestinal en el perfil metabolómico fecal de ratones con cáncer colorrectal. Se analizaron 175 metabolitos mediante LC-MS en 16 muestras fecales de ratones trasplantados con microbiota cecal de donantes alimentados con dieta cetogénica (KC) o estándar (SC). El análisis exploratorio del dataset, transformado a objeto `SummarizedExperiment` en RStudio, sugirió diferencias metabolómicas entre grupos. El análisis de componentes principales mostró una tendencia a la separación entre KC y SC a lo largo del primer componente, aunque con solapamiento considerable. El análisis jerárquico mostró una agrupación parcial de las muestras según la condición experimental. Estos resultados preliminares podrían apuntar a diferencias en la composición microbiana intestinal de cada grupo de ratones. No obstante, se requiere un análisis más exhaustivo y la inclusión de datos de microbioma y su efecto sobre el tumor para extraer conclusiones biológicas.
 
 
 # Objetivos
 
-**Objetivo global**: Identificar las diferencias en el perfil metabolómico fecal de ratones con cáncer colorrectal trasplantados con microbiota cecal proveniente de donantes alimentados con dieta cetogénica (KC) frente a dieta estándar (SC).
+**Objetivo global**: Identificar diferencias en el perfil metabolómico fecal de ratones con cáncer colorrectal trasplantados con microbiota cecal proveniente de donantes alimentados con dieta cetogénica (KC) frente a dieta estándar (SC).
 
 **Objetivos específicos**:
 
@@ -70,7 +70,7 @@ El dataset con el que he trabajado procede de un experimento con ratones libres 
 
 ![Representación esquemática del montaje experimental de transferencia microbiana cecal en la instalación *germ-free* (Creado en BioRender. Rodriguez, F. (2024) BioRender.com/w69g496)$^{2}$.](Figura_1.png){#fig-id width=100% fig-align="center"}
 
-Las muestras fecales de los ratones se analizaron mediante una estrategia de LC-MS para caracterizar el metaboloma fecal de los diferentes grupos experimentales. Los metabolitos se extrajeron de las muestras fecales de ratón y las muestras resultantes se utilizaron para un análisis de metabolómica no dirigida por LC-MS.
+Las muestras fecales de los ratones se analizaron mediante una estrategia de LC-MS para caracterizar el metaboloma fecal de los diferentes grupos experimentales. Los metabolitos se extrajeron de las muestras fecales de ratón y las muestras resultantes se utilizaron para un análisis de metabolómica no dirigida (*untargeted*) por LC-MS.
 
 
 ## Herramientas estadísticas y bioinformáticas
@@ -79,7 +79,9 @@ Para el desarrollo de esta actividad, se empleó el lenguaje de programación R 
 
 - **RStudio** 2024.12.1+563 "Kousa Dogwood" Release (2025-02-02) for windows
 
-- **Paquetes**: RMarkdown 2.29, BiocManager 1.30.25, SummarizedExperiment 1.34.0, tidyverse 2.0.0, tibble 3.2.1, ggplot2 3.5.1, patchwork 1.3.0, factoextra 1.0.7, FactoMineR 2.11, ggdendro 0.2.0
+- **Paquetes y librerías**: BiocManager 1.30.25, factoextra 1.0.7, ggdendro 0.2.0, patchwork 1.3.0, RMarkdown 2.29, SummarizedExperiment 1.34.0, tidyverse 2.0.0 (incluye dplyr 1.1.4, ggplot2 3.5.1, tidyr 1.3.1)
+
+- **Control de versiones**: Git 2.48.1.windows.1 y GitHub
 
 NOTA: Siguiendo las recomendaciones del repositorio Metabolomics Workbench, inicialmente opté por descargar el archivo comprimido con los datos crudos de todas las muestras (12 GB) en formato .mzML mediante FileZilla, un cliente FTP gratuito. Después, hice un preprocesado con MSconvertGUI$^{3}$ para obtener una tabla de intensidades. Este software libre permite reducir notablemente el tamaño de los archivos (en este caso, pasaron de ocupar 16 GB a 6 GB). Sin embargo, mi ordenador no pudo procesarlos en RStudio y, finalmente, descargué los datos procesados y metadatos en formato .txt.
 
@@ -93,17 +95,17 @@ A partir del archivo `ST003680_AN006041_metadata_data.txt`, generé un objeto de
 
 ## Creación de un objeto de la clase `SummarizedExperiment`
 
-El archivo .txt descargado de Metabolomics Workbench me permitió proceder con los objetivos de esta PEC y generar un objeto de la clase `SummarizedExperiment`. La clase `SummarizedExperiment` representa una evolución significativa respecto a `ExpressionSet`, diseñada para adaptarse a las necesidades de los datos ómicos modernos. Mientras `ExpressionSet` se limitaba a una única matriz de datos, `SummarizedExperiment` permite almacenar múltiples matrices (`assays`), ofreciendo mayor flexibilidad para diversos tipos de experimentos ómicos. Una ventaja clave de `SummarizedExperiment` es su capacidad para coordinar eficientemente los metadatos y los datos observados durante las operaciones de subconjunto, reduciendo el riesgo de errores en el análisis. Además, su estructura más flexible en la información de filas, que puede incluir tanto objetos `GRanges` como `DataFrames` arbitrarios, la hace ideal para experimentos de secuenciación como RNA-Seq y ChIP-Seq, convirtiéndola en la opción recomendada para el manejo de datos ómicos complejos en el ecosistema de Bioconductor$^{4}$.
+El archivo .txt con los datos de metabolómica *untargeted* descargado de Metabolomics Workbench me permitió proceder con los objetivos de esta PEC y generar un objeto de la clase `SummarizedExperiment`. La clase `SummarizedExperiment` representa una evolución significativa respecto a `ExpressionSet`, diseñada para adaptarse a las necesidades de los datos ómicos modernos. Mientras `ExpressionSet` se limitaba a una única matriz de datos, `SummarizedExperiment` permite almacenar múltiples matrices (`assays`), ofreciendo mayor flexibilidad para diversos tipos de experimentos ómicos. Una ventaja clave de `SummarizedExperiment` es su capacidad para coordinar eficientemente los metadatos y los datos observados durante las operaciones de subconjunto, reduciendo el riesgo de errores en el análisis. Además, su estructura más flexible en la información de filas, que puede incluir tanto objetos `GRanges` como `DataFrames` arbitrarios, la hace ideal para experimentos de secuenciación como RNA-Seq y ChIP-Seq, convirtiéndola en la opción recomendada para el manejo de datos ómicos complejos en el ecosistema de Bioconductor$^{4}$.
 
 
-Para cumplir el primer objetivo de esta PEC, creé un objeto de la clase `SummarizedExperiment` a partir de un archivo de los datos de metabolómica *untargeted* seleccionados. Primero leí el archivo completo como texto para localizar, mediante etiquetas (`MS_METABOLITE_DATA_START/ END`), la sección que contiene la matriz de expresión, en formato metabolitos × muestras. Extraje esa tabla, convertí los datos a formato numérico y la traspuse para que quedara en el formato adecuado para `SummarizedExperiment`: muestras en filas y metabolitos en columnas. A continuación, construí `colData` con los metadatos de las muestras fecales, asignando a cada una su condición experimental (contenido cecal de ratones donantes con dieta cetogénica o con dieta estándar). Después, extraje `rowData` desde otra sección del archivo delimitada por `METABOLITES_START/ END`, que contenía los nombres de los metabolitos y sus tiempos de retención. Finalmente, ensamblé el objeto `SummarizedExperiment`, incorporando tanto la matriz de intensidades como los metadatos, convirtiendo `colData` y `rowData` en objetos `DataFrame()` para asegurar compatibilidad con la estructura de Bioconductor. El código completo (con metadatos) se puede consultar en el archivo `0_CreacionSumExp_code.R`, disponible en el repositorio de GitHub de esta PEC$^{1}$.
+Para crear el objeto `SummarizedExperiment`, primero leí el archivo completo como texto para localizar, mediante etiquetas (`MS_METABOLITE_DATA_START/ END`), la sección que contiene la matriz de expresión, en formato metabolitos × muestras. Extraje esa tabla y convertí los datos a formato numérico. A continuación, construí `colData` con los metadatos de las muestras fecales, asignando a cada una su condición experimental (contenido cecal de ratones donantes con dieta cetogénica o con dieta estándar). Después, extraje `rowData` desde otra sección del archivo delimitada por `METABOLITES_START/ END`, que contenía los nombres de los metabolitos y sus tiempos de retención. Finalmente, ensamblé el objeto `SummarizedExperiment`, incorporando tanto la matriz de intensidades como los metadatos, convirtiendo `colData` y `rowData` en objetos `DataFrame()` para asegurar compatibilidad con la estructura de Bioconductor. El código completo (con metadatos) se puede consultar en el archivo `0_CreacionSumExp_code.R`, disponible en el repositorio de GitHub de esta PEC$^{1}$.
 
 
 ## Inspección preliminar del dataset
 
-El código de los siguientes apartados se pueden consultar en el archivo `1_AnalisisExp_code.R`, disponible en el repositorio de GitHub de esta PEC$^{1}$. A continuación presentaré un breve análisis descriptivos de los datos.
+El código de los siguientes apartados se pueden consultar en el archivo `1_AnalisisExp_code.R`, disponible en el repositorio de GitHub de esta PEC$^{1}$. A continuación, presentaré un breve análisis descriptivo de los datos.
 
-El conjunto de datos tiene 175 metabolitos (filas) y 16 muestras (columnas), divididas en dos grupor según la condición experimental (KC, SC). En la Tabla 1 se muestran las principales características extraídas del objeto `SummarizedExperiment`.
+El conjunto de datos tiene 175 metabolitos (filas) y 16 muestras (columnas), divididas en dos grupos según la condición experimental (KC o SC). En la siguiente tabla se muestran las principales características extraídas del objeto `SummarizedExperiment`:
 
 | Característica | Descripción |
 |----------------|-------------|
@@ -141,41 +143,40 @@ kableExtra::kable(intensidades_df, "pipe")
 
 En la **figura 2** muestro dos boxplot de la abundancia relativa de cada metabolito en los ratones, diferenciando los grupos experimentales KC y SC por colores. Cada caja representa la distribución de la abundacia relativa para un metabolito específico en cada grupo: la línea central indica la mediana, los límites de la caja corresponden al primer y tercer cuartil, y los "bigotes" reflejan la variabilidad fuera de los cuartiles sin considerar los outliers. Para facilitar la visualización, he eliminado los valores no detectados (NA), y dividido y apilado los gráficos verticalmente. Además, he ampliado el eje y de la segunda figura, a escala. El ácido L-láctico aparece truncado por sobrepasar el límite superior fijado (media ± desviación estándar: 21.42 ± 18.032 u.a. para ratones KC y 34.58 ± 29.524 u.a. para ratones SC).
 
-![Distribución de la abundancia relativa de metabolitos en los grupos experimentales KC y SC, cuantificados por LC-MS. Se han eliminado los valores no detectados (NA). n = 8 ratones para cada grupo experimental. Intensidades relativas normalizadas (área bajo la curva), expresadas en unidades arbitrarias (u.a.).](boxplot_metabolites.png){#fig-id width=100% fig-align="center"}
-
-
 ### Análisis multivariante
 
-En la **figura 3** muestro un análisis de componentes principales (PCA) aplicado a los perfiles metabolómicos, con el objetivo de explorar la agrupación de las muestras en función de la variabilidad global en la abundancia de metabolitos. El PCA revela una tendencia a la separación entre los grupos experimentales, principalmente a lo largo de la primera componente principal (PC1 o Dim1), que explica el 36% de la varianza. El grupo de ratones SC tiende a agruparse a la derecha de PC1, mientras que el grupo KC se concentra más a la izquierda. Aunque los grupos no se separan completamente, se observan patrones distintos de agrupamiento. Esto sugiere diferencias en los perfiles metabolómicos globales entre condiciones, aunque con cierta solapación que indica variabilidad no completamente discriminativa.
+En la **figura 3** muestro un análisis de componentes principales (PCA) aplicado a los perfiles metabolómicos, con el objetivo de explorar la agrupación de las muestras en función de la variabilidad global en la abundancia de metabolitos. El PCA revela una tendencia a la separación entre los grupos experimentales, principalmente a lo largo de la primera componente principal (PC1 o Dim1), que explica el 36% de la varianza. El grupo de ratones SC tiende a agruparse a la derecha de PC1, mientras que el grupo KC se concentra más a la izquierda. Aunque los grupos no se separan completamente, se observan patrones distintos de agrupamiento. Esto sugiere diferencias en los perfiles metabolómicos globales entre condiciones, aunque con cierto solapamiento que indica una variabilidad no completamente discriminativa.
+
+Para ver si se daba un agrupamiento de las muestras según su perfil metabolómico, realicé un dendrograma jerárquico basado en distancias euclídeas y enlace promedio (**figura 4**). Se puede apreciar una agrupación parcial de las muestras según el grupo experimental (KC y SC), sin una separación clara. Esto sugiere, de nuevo, una alta variabilidad intra-grupo o una diferencia metabólica moderada entre condiciones.
+
+![Distribución de la abundancia relativa de metabolitos en los grupos experimentales KC y SC, cuantificados por LC-MS. Se han eliminado los valores no detectados (NA). n = 8 ratones para cada grupo experimental. Intensidades relativas normalizadas (área bajo la curva), expresadas en unidades arbitrarias (u.a.).](boxplot_metabolites.png){#fig-id width=100% fig-align="center"}
+
+::: {.float-container layout-ncol=1}
 
 ![Análisis de componentes principales (PCA) de los perfiles metabolómicos obtenidos por LC-MS en los grupos experimentales KC y SC (n = 8 por grupo). Se representan las muestras individuales en el espacio definido por las dos primeras componentes principales (PC1 y PC2), que explican conjuntamente el 50,8 % de la varianza total (valores indicados en los ejes). Cada punto corresponde a una muestra individual (ratón) y está coloreado según su grupo experimental. Las líneas discontinuas indican el origen de los ejes. El análisis se realizó sobre datos normalizados (área bajo la curva) y escalados, tras eliminar metabolitos con valores faltantes.](pca_metabolomics.png){#fig-id width=100% fig-align="center"}
 
-Para ver si se da un agrupamiento de las muestras según su perfil metabolómico, realicé un dendrograma jerárquico basado en distancias euclídeas y enlace promedio (**figura 4**). Se puede apreciar una agrupación parcial de las muestras según el grupo experimental (KC y SC), sin una separación clara. Esto sugiere, de nuevo, una alta variabilidad intra-grupo o una diferencia metabólica moderada entre condiciones.
+![Dendrograma de agrupamiento jerárquico de las muestras basado en perfiles metabolómicos obtenidos por LC-MS. El clustering se realizó a partir de una matriz de intensidades normalizadas (área bajo la curva), utilizando distancia euclídea y el método de enlace promedio (*average linkage*). Cada muestra se representa por su identificador individual y las alturas del dendrograma reflejan las disimilitudes entre perfiles.](dendro_metabolomics.png){#fig-id width=100% fig-align="center"}
 
-![Dendrograma de agrupamiento jerárquico de las muestras basado en perfiles metabolómicos obtenidos por LC-MS. El clustering se realizó a partir de una matriz de intensidades normalizadas (área bajo la curva), utilizando distancia euclídea y el método de enlace promedio (*average linkage*). Cada muestra se representa por su identificador individual, y las alturas del dendrograma reflejan las disimilitudes entre perfiles.](dendro_metabolomics.png){#fig-id width=100% fig-align="center"}
-
-Por último, pruebo a realizar una agrupación de los metabolitos por el método de las k-means. 
-
-
+:::
 
 # Discusión
 
-Reflexiones sobre limitaciones del estudio y sobre el trabajo realizado, en el contexto del problema biológico.
-(Breve info del paper, tener en cuenta las bacterias que hay presentes en cada tipo de microbiota. Relación con efecto antitumoral-> esta parte no la he analizado, así que es una limitación de mi trabajo! se trata de un análisis parcial). Quizás con alguna figura del paper se puedan hacer comparaciones, pero no parece -> OJO mi dataset quizás fue solo para caracterizar metabolómicamente los ratones GF trasplantados
+En el presente estudio se ha llevado a cabo un análisis metabolómico *untargeted* por LC-MS para caracterizar el perfil de metabolitos en ratones *germ-free* trasplantados con contenido cecal proveniente de ratones alimentados con una dieta cetogénica (grupo KC) o estándar (grupo SC). Puesto que el dataset disponible no incluía información sobre la composición microbiana, el análisis realizado es solo una aproximación parcial centrada en un perfil metabólico general, sin posibilidad de correlacionarlo directamente con cepas bacterianas ni de establecer causalidad.
 
-solo con el PCA:
-No se puede afirmar significancia estadística de la separación entre grupos.
-No se identifican qué metabolitos son responsables de la separación (eso requiere un biplot o análisis diferencial).
-No se establece causalidad ni dirección del cambio biológico
+El análisis descriptivo univariante sugirió diferencias en la abundancia relativa de metabolitos específicos entre los grupos KC y SC, aunque con una alta dispersión intra-grupo.
 
-Más interesane ver microbiota o ampliar perfil metabolómico
+Por otra parte, el análisis multivariante mediante PCA permitió una primera aproximación exploratoria a la estructura global de los datos. Se observó una tendencia a la separación entre los grupos experimentales a lo largo del PC1, que explicó un 36% de la varianza total. Sin embargo, esta separación fue parcial y con solapamiento evidente entre grupos, lo que indica que las diferencias metabolómicas globales, aunque presentes, no son lo suficientemente robustas como para discriminar completamente entre condiciones. Es importante señalar que el PCA es un método puramente exploratorio: no permite inferir significancia estadística, ni identificar los metabolitos responsables de la separación observada, ni mucho menos establecer una relación causal. El dendrograma jerárquico reforzó esta interpretación: aunque algunas muestras del mismo grupo experimental tienden a agruparse, la separación no es clara ni consistente. Esto sugiere una alta variabilidad intra-grupo y una posible influencia de factores no controlados, lo que limita la capacidad del clustering jerárquico para reflejar estructuras biológicas en este contexto.
 
-1 página
+Por todo ello, una limitación clave del trabajo es que, al tener muestras limitadas y no disponer de información sobre la microbiota trasplantada a los ratones *germ-free*, no ha sido posible evaluar directamente si la composición bacteriana se correlaciona con los perfiles metabolómicos observados ni si alguna cepa bacteriana específica está asociada a un efecto antitumoral. Por tanto, este estudio debe entenderse como un análisis parcial, que aporta una descripción inicial del impacto metabólico de los trasplantes fecales, pero que requiere ampliar el tamaño muestral y ser complementado con datos microbiológicos y funcionales.
+
+Asimismo, el enfoque *untargeted* proporciona una visión amplia pero superficial del metaboloma. Ampliar este análisis con técnicas complementarias (ej. metabolómica dirigida, análisis de lípidos, ácidos biliares u otros compuestos relevantes en la interacción microbiota-huésped) sería esencial para obtener una imagen más completa del efecto del microbioma en el entorno tumoral.
 
 
 # Conclusiones
 
-Media página: utilidad e interés de `SummarizedExperiment`, versatilidad que permite al incorporar más datos de las variables y metadatos del estudio
+Aunque se han observado diferencias en la abundancia de ciertos metabolitos y una tendencia a la separación de grupos mediante análisis multivariantes, la alta variabilidad intra-grupo y la falta de una separación clara limitan las conclusiones biológicas que pueden extraerse. No obstante, el uso del objeto `SummarizedExperiment` ha demostrado ser altamente útil y versátil, al permitir la integración de los datos cuantitativos de metabolitos con los metadatos experimentales, facilitando el análisis exploratorio.
+
+Si se tratase de un trabajo más exhaustivo o de un estudio destinado a un artículo científico, se podrían incorporar datos adicionales —como perfiles microbiológicos o resultados funcionales— en el mismo objeto `SummarizedExperiment` para realizar análisis más completos.
 
 
 # Referencias
@@ -186,4 +187,4 @@ Media página: utilidad e interés de `SummarizedExperiment`, versatilidad que p
 
 3. Chambers, M., Maclean, B., Burke, R. et al. A cross-platform toolkit for mass spectrometry and proteomics. Nat Biotechnol 30, 918–920 (2012). Disponible en: <https://doi.org/10.1038/nbt.2377>
 
-4. Morgan M, Obenchain V, Hester J, Pagès H. SummarizedExperiment for Coordinating Experimental Assays, Samples, and Regions of Interest [Internet]. Bioconductor; 2023 [consultado 2025 mar 23]. Disponible en: <https://bioconductor.org/packages/release/bioc/vignettes/SummarizedExperiment/inst/doc/SummarizedExperiment.html>
+4. Morgan M, Obenchain V, Hester J, Pagès H. SummarizedExperiment for Coordinating Experimental Assays, Samples, and Regions of Interest [Internet]. Bioconductor; 2023 [consultado 23 mar 2025]. Disponible en: <https://bioconductor.org/packages/release/bioc/vignettes/SummarizedExperiment/inst/doc/SummarizedExperiment.html>

@@ -79,7 +79,7 @@ colnames(metabolite_meta) <- c("metabolite_name", "retention_time")
 # conversión a DataFrame() permite estructuras más complejas
 
 se <- SummarizedExperiment(
-  assays = list(intensity = t(expr_data)),  #datos
+  assays = list(intensity = t(expr_data)),  #datos, traspuesta
   rowData = DataFrame(metabolite_meta),   # Metabolitos en filas
   colData = DataFrame(col_data) )   # Muestras en columnas
 

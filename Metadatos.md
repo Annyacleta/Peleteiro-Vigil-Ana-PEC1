@@ -2,6 +2,7 @@
 
 Este archivo contiene metadatos sobre un estudio metabolómico del efecto de la dieta cetogénica en cáncer colorrectal en ratones.
 En él, se detalla toda la información asociada al estudio, desde el diseño experimental hasta las especificaciones y condiciones de la técnica instrumental empleada (en este caso, LC-MS).
+También se incluyen los nombres de los metabolitos y sus timepos de retención (RT).
 
 ## General Information
 
@@ -98,5 +99,186 @@ En él, se detalla toda la información asociada al estudio, desde el diseño ex
 *   **MS\_TYPE:** ESI
 *   **ION\_MODE:** UNSPECIFIED
 *   **MS\_COMMENTS:** Resolution - 120,000, m/z range - 60-900, AGC target - 1e6, maximum injection time – 70 ms. ddMS2 was applied using the following settings: Resolution - 30,000, AGC target - 5e5, maximum injection time – 70, topN - 5, Normalized collision energy – 20. Samples were acquired in positive and negative ionization mode simultaneously (polarity switching).
+
+## METABOLITES
+
+| Metabolite Name                  | RT    |
+|----------------------------------|-------|
+| 2-Aminobenzoic acid              | 2.69  |
+| 2-Hydroxyadipic acid             | 10.27 |
+| 2-Hydroxybutyric acid            | 2.52  |
+| 2-Ketobutyric acid               | 2.26  |
+| 2-Methylglutaric acid            | 2.14  |
+| 3,4-Dihydroxybenzeneacetic acid  | 7.4   |
+| 3-Hydroxyanthranilic acid        | 5.44  |
+| 3-Hydroxyglutaric acid           | 10.63 |
+| 3-Indolebutyric acid             | 1.92  |
+| 3-Indoleglyoxylic acid           | 3.03  |
+| 4-Hydroxy-2-oxoglutaric acid     | 11.3  |
+| 4-Hydroxy-L-glutamic acid        | 10.23 |
+| 4-Hydroxyproline                 | 8.99  |
+| 5-Hydroxyindoleacetic acid       | 6.99  |
+| 5-Hydroxy-L-tryptophan           | 9.07  |
+| 5-Methyl-DL-Tryptophan           | 4.06  |
+| 6-Phosphogluconic acid           | 12.63 |
+| Acetyl-CoA                       | 9.44  |
+| Acetylcysteine                   | 2.57  |
+| Adenine                          | 3.33  |
+| Adenosine monophosphate          | 9.54  |
+| Adenosine triphosphate           | 11.96 |
+| ADP                              | 10.99 |
+| AICAR                            | 4.53  |
+| Betaine                          | 4.51  |
+| Biotin                           | 3.08  |
+| CDP                              | 12.16 |
+| Choline                          | 12.63 |
+| cis-Aconitic acid                | 12.28 |
+| Citramalic acid                  | 10.13 |
+| Citric acid                      | 13    |
+| Creatine                         | 9.14  |
+| Creatinine                       | 3.6   |
+| Cytidine monophosphate           | 11.05 |
+| Cytidine triphosphate            | 13.07 |
+| Cytosine                         | 4.7   |
+| D-2-Hydroxyglutaric acid         | 10.44 |
+| Deoxyadenosine triphosphate      | 11.41 |
+| D-Erythrose 4-phosphate          | 11.04 |
+| Desaminotyrosine                 | 2.84  |
+| D-Fructose                       | 7.2   |
+| D-Galactose                      | 8.71  |
+| D-Glucose                        | 8.75  |
+| D-Glucuronic acid                | 10.35 |
+| D-Glycerate 3-phosphate          | 12.19 |
+| D-Mannose                        | 8.04  |
+| D-Mannose 1-phosphate            | 11.46 |
+| D-Ribose 5-phosphate             | 11.13 |
+| D-Sedoheptulose 7-phosphate      | 11.43 |
+| dUMP                             | 9.4   |
+| FAD                              | 7.75  |
+| Flavin Mononucleotide            | 7.27  |
+| Fructose 1,6-bisphosphate        | 13.19 |
+| Fructose 6-phosphate             | 11.15 |
+| Fumaric acid                     | 11.15 |
+| Galactose 1-phosphate            | 11.09 |
+| Galacturonic acid                | 10.6  |
+| Gamma Glutamylglutamic acid      | 12.24 |
+| Gamma-Glutamylcysteine           | 9.41  |
+| Glucaric acid                    | 11.64 |
+| Gluconic acid                    | 8.88  |
+| Glucose 1-phosphate              | 11.05 |
+| Glucose 6-phosphate              | 11.8  |
+| Glutaric acid                    | 10.29 |
+| Glutathione                      | 9.63  |
+| Glyceric acid                    | 5.69  |
+| Glycerol 3-phosphate             | 10.41 |
+| Glycine                          | 9.99  |
+| Guanine                          | 6.07  |
+| Guanosine diphosphate            | 12.71 |
+| Guanosine diphosphate mannose    | 12.72 |
+| Guanosine monophosphate          | 11.75 |
+| Guanosine triphosphate           | 13.56 |
+| Homocysteine                     | 7.12  |
+| Hydroxykynurenine                | 7.46  |
+| Hydroxypropanedioic acid         | 11.85 |
+| Indole                           | 1.83  |
+| Indole-3-acetamide               | 2.03  |
+| Indole-3-carboxaldehyde          | 1.85  |
+| Indole-3-carboxylic acid         | 3.51  |
+| Indole-3-propionic acid          | 2.15  |
+| Indoleacetaldehyde               | 1.95  |
+| Indoleacetic acid                | 3.1   |
+| Indoleacrylic acid               | 2.6   |
+| Indolelactic acid                | 2.74  |
+| Indolepyruvate                   | 2.24  |
+| Inosine                          | 4.84  |
+| Inosinic acid                    | 10.85 |
+| Isocitric acid                   | 13.09 |
+| Itaconic acid                    | 9.94  |
+| Ketoleucine                      | 1.69  |
+| Kynurenic acid                   | 1.86  |
+| L-Acetylcarnitine                | 4.3   |
+| L-Alanine                        | 8.99  |
+| L-Arginine                       | 15.7  |
+| L-Asparagine                     | 9.68  |
+| L-Aspartic acid                  | 10.08 |
+| L-Cystathionine                  | 11.26 |
+| L-Cystine                        | 10.6  |
+| L-Glutamic acid                  | 9.56  |
+| L-Glutamine                      | 9.61  |
+| L-Histidine                      | 9.24  |
+| L-Isoleucine                     | 4.83  |
+| L-Kynurenine                     | 4.56  |
+| L-Lactic acid                    | 3.38  |
+| L-Leucine                        | 4.32  |
+| L-Lysine                         | 15.2  |
+| L-Malic acid                     | 11.2  |
+| L-Methionine                     | 5.16  |
+| L-Phenylalanine                  | 3.84  |
+| L-Proline                        | 6.65  |
+| L-Serine                         | 10    |
+| L-Threonine                      | 8.7   |
+| L-Tryptophan                     | 5.51  |
+| L-Tyrosine                       | 7.31  |
+| L-Valine                         | 5.99  |
+| Maleic acid                      | 3.53  |
+| Malonic acid                     | 10.36 |
+| Melatonin                        | 1.65  |
+| Methylmalonic acid               | 9.27  |
+| Myo-inositol 1-phosphate         | 12.18 |
+| N-Acetylglutamic acid            | 9.85  |
+| N-Acetyl-L-aspartic acid         | 10.22 |
+| N-Acetylserotonin                | 1.91  |
+| NAD                              | 9.7   |
+| NADH                             | 9.12  |
+| NADP                             | 11.96 |
+| NADPH                            | 11.96 |
+| N-Formyl-L-methionine            | 2.1   |
+| Niacinamide                      | 2.3   |
+| Nicotinic acid                   | 2.45  |
+| O-Acetylserine                   | 4.22  |
+| O-Phosphoethanolamine            | 11    |
+| Ornithine                        | 14.34 |
+| Orotic acid                      | 4.15  |
+| Oxalacetic acid                  | 11.8  |
+| Oxalic acid                      | 12.22 |
+| Oxidized glutathione             | 12.18 |
+| Oxoglutaric acid                 | 10.8  |
+| Pantothenic acid                 | 2.7   |
+| Phenylpyruvic acid               | 1.7   |
+| Phosphoenolpyruvic acid          | 12.54 |
+| Phosphoserine                    | 11.63 |
+| Picolinic acid                   | 2.81  |
+| Pyridoxal                        | 2.5   |
+| Pyridoxal 5'-phosphate           | 9.6   |
+| Pyridoxine                       | 2.64  |
+| Pyroglutamic acid                | 4.06  |
+| Pyrophosphate                    | 10.12 |
+| Pyruvic acid                     | 2.84  |
+| Quinaldic acid                   | 2.05  |
+| Quinolinic acid                  | 10.73 |
+| Riboflavin                       | 2.8   |
+| Ribonic acid                     | 7.59  |
+| Sarcosine                        | 8.27  |
+| Serotonin                        | 16.01 |
+| Succinic acid                    | 10.38 |
+| Taurine                          | 8.94  |
+| Thiamine                         | 12.7  |
+| Thiamine monophosphate           | 9.61  |
+| Thiamine pyrophosphate           | 10.14 |
+| Thiosulfate                      | 14.39 |
+| Threonic acid                    | 7.26  |
+| Thymidine 5'-triphosphate        | 11.6  |
+| Thymine                          | 2.3   |
+| Tryptamine                       | 13.61 |
+| Tryptophol                       | 1.84  |
+| Uracil                           | 2.96  |
+| Uric acid                        | 7.71  |
+| Uridine                          | 3.78  |
+| Uridine 5'-diphosphate           | 11-78 |
+| Uridine 5'-monophosphate         | 10.47 |
+| Uridine diphosphategalactose     | 11.56 |
+| Uridine triphosphate             | 12.71 |
+| Xanthurenic acid                 | 4.82  |
+
 
 
